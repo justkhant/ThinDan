@@ -6,6 +6,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.animation.Animation;
+import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,10 +24,11 @@ import android.os.Bundle;
 
 public class LoginActivity extends AppCompatActivity {
 
-    private TextView info;
+    private TextView info, title1, title2;
     private ImageView profile;
-    private LoginButton login;
+    private LoginButton facebookLogin;
 
+    Animation rightAnim;
     CallbackManager callbackManager;
 
     @Override
@@ -34,12 +37,20 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         info = findViewById(R.id.info);
+        title1 = findViewById(R.id.title1);
+        title2 = findViewById(R.id.title2);
+
+        //Animations
+        rightAnim = AnimationUtils.loadAnimation(this, R.anim.right_animation);
+        title1.setAnimation(rightAnim);
+        title2.setAnimation(rightAnim);
+
         //profile = findViewById(R.id.profile);
-        login = findViewById(R.id.login);
+        facebookLogin = findViewById(R.id.login);
 
         callbackManager = CallbackManager.Factory.create();
 
-        login.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+        facebookLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override public void onSuccess(LoginResult loginResult) {
                 info.setText("User Id : " + loginResult.getAccessToken().getUserId());
                 String imageURL = "https://graph.facebook.com/" + loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1";
