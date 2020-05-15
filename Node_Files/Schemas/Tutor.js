@@ -7,12 +7,7 @@ var Schema = mongoose.Schema;
 
 var tutorSchema = new Schema({
 	facebook_id: {type: String, required: true, unique: true},
-	email: {type: String, required: true},
-	password: {type: String, required: true},
-	name: {type: String, required: true},
-	bio: {type: String},
-	phoneNumber: {type: String},
-	profilePic: {type: String}
+	name: {type: String, required: true}
 });
 
 // export userSchema as a class called User

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">ThinDan-Android</string>
+    <string name="app_name">thindan</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Android Studio</string>
@@ -15,4 +15,9 @@
 
     <string name="facebook_app_id">305990943733781</string>
     <string name="fb_login_protocol_scheme">fb305990943733781</string>
+
+    <string name="splashscreen_app_name">thindan</string>
+    <string name="splashscreen_description">bridging the gap between students and tutors</string>
+    <string name="login_welcome">welcome to,</string>
+    <string name="login_app_name">thindan.</string>
 </resources>

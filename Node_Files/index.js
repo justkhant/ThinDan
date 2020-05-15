@@ -26,29 +26,18 @@ var Tutor = require('./Schemas/Tutor.js');
 // route for creating a new User
 // this is the action of the SignUp button on the SignUp Page
 app.use('/createNewTutor', (req, res) => {
-	/*
 	// construct the User from the form data which is in the request body
-	var newUser = new User({
-		email: req.body.email,
-		password: req.body.password,
-		name: req.body.name,
-		school: req.body.school,
-		bio: "",
-		rank: 0,
-		points: 0,
-		phoneNumber: "",
-		profilePic: req.body.profilePic
+	var newTutor = new Tutor({
+		facebook_id: "1",
+		name: "Test_User"
 	});
 
-	console.log("Creating new User...");
-	console.log("Email: " + newUser.email);
-	console.log("Password: " + newUser.password);
-	console.log("Name: " + newUser.name);
-	console.log("School: " + newUser.school);
-	console.log("Strong default profile picture...")
+	console.log("Creating new Tutor...");
+	console.log("Facebook_id: " + newTutor.facebook_id);
+	console.log("Name: " + newTutor.name);
 
 	// save the user to the database
-	newUser.save((err) => {
+	newTutor.save((err) => {
 		if (err) {
 			res.type('html').status(200);
 			res.write('uh oh: ' + err);
@@ -65,7 +54,6 @@ app.use('/createNewTutor', (req, res) => {
 			});
 		}
 	});
-	*/
 });
 
 

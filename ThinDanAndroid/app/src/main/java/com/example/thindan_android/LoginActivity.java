@@ -34,7 +34,7 @@ public class LoginActivity extends AppCompatActivity {
         setContentView(R.layout.activity_login);
 
         info = findViewById(R.id.info);
-        profile = findViewById(R.id .profile);
+        //profile = findViewById(R.id.profile);
         login = findViewById(R.id.login);
 
         callbackManager = CallbackManager.Factory.create();
