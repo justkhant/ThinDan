@@ -55,11 +55,11 @@
 
     <EditText
         android:id="@+id/username"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/edit_text_width"
         android:layout_height="wrap_content"
         android:layout_below="@+id/login_title"
         android:layout_centerHorizontal="true"
-        android:layout_marginTop="13dp"
+        android:layout_marginTop="15dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="@string/username"
@@ -69,17 +69,17 @@
 
     <EditText
         android:id="@+id/password"
-        android:layout_width="wrap_content"
+        android:layout_width="@dimen/edit_text_width"
         android:layout_height="wrap_content"
         android:layout_below="@+id/username"
+        android:layout_centerHorizontal="true"
         android:layout_marginTop="20dp"
         android:background="@drawable/rounded_edittext"
         android:ems="10"
         android:hint="@string/password"
-        android:inputType="textPersonName"
+        android:inputType="textPassword"
         android:paddingHorizontal="18dp"
-        android:paddingVertical="7dp"
-        android:layout_centerHorizontal="true"/>
+        android:paddingVertical="7dp" />
 
     <Button
         android:id="@+id/login_button"
@@ -87,7 +87,7 @@
         android:layout_height="35dp"
         android:layout_below="@+id/password"
         android:layout_marginTop="44dp"
-        android:background="@drawable/rounded_login_button"
+        android:background="@drawable/rounded_blue_button"
         android:text="@string/login"
         android:textColor="#FFFFFF"
         android:layout_centerHorizontal="true"
@@ -161,7 +161,8 @@
         android:paddingHorizontal="3dp"
         android:text="@string/signup"
         android:textAlignment="center"
-        android:textColor="#6F64FF" />
+        android:textColor="#6F64FF"
+        android:onClick="onSignUpClick"/>
 
 
 </RelativeLayout>

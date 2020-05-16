@@ -6,7 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -33,6 +33,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView info, title1, title2;
     private ImageView profile;
     private LoginButton facebookLogin;
+
 
     Animation rightAnim;
     CallbackManager callbackManager;
@@ -94,5 +95,8 @@ public class LoginActivity extends AppCompatActivity {
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
 
-
+    public void onSignUpClick(View v) {
+        Intent i = new Intent(this, SignupActivity.class);
+        startActivity(i);
+    }
 }
