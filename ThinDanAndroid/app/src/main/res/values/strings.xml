@@ -16,8 +16,11 @@
     <string name="facebook_app_id">305990943733781</string>
     <string name="fb_login_protocol_scheme">fb305990943733781</string>
 
+    <!-- splash_screen  -->
     <string name="splashscreen_app_name">thindan</string>
     <string name="splashscreen_description">bridging the gap between students and tutors</string>
+
+    <!-- login_screen  -->
     <string name="login_welcome">welcome to,</string>
     <string name="login_app_name">thindan.</string>
     <string name="login">login</string>
@@ -26,5 +29,11 @@
     <string name="or">OR</string>
     <string name="forgot_password">forgot password?</string>
     <string name="no_account">don\'t have an account? </string>
+
+    <!-- signup  -->
     <string name="signup">sign up</string>
+    <string name="email">Email</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="phone">Phone Number</string>
+
 </resources>
