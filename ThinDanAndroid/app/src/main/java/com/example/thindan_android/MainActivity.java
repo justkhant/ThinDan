@@ -1,12 +1,20 @@
 package com.example.thindan_android;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
+import com.squareup.picasso.Picasso;
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -16,6 +24,9 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
@@ -24,6 +35,21 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        // Intent to recieve FB login data from LoginActivity
+        //Intent intent = getIntent();
+        Boolean fbUser = getIntent().getBooleanExtra("fbUser", false);
+        String userID = getIntent().getStringExtra("userID");
+        String userAvatar = getIntent().getStringExtra("userAvatar");
+        //String userName = getIntent().getStringExtra("userName");
+        Log.i("fbUser?", String.valueOf(fbUser));
+        Log.i("userID", userID);
+        Log.i("userAvatarURL", userAvatar);
+        //Log.i("userName", userName);
+
+
+
+
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         FloatingActionButton fab = findViewById(R.id.fab);
@@ -36,15 +62,54 @@ public class MainActivity extends AppCompatActivity {
         });
         DrawerLayout drawer = findViewById(R.id.drawer_layout);
         NavigationView navigationView = findViewById(R.id.nav_view);
+
+        // Setting up Nav Drawer Header Programmatically
+        View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
+        ImageView avatar = (ImageView) headerView.findViewById(R.id.imageView);
+        final TextView name = (TextView) headerView.findViewById(R.id.textView);
+
+        Picasso.get().load(userAvatar).into(avatar);
+        name.setText(userID);
+
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        //Log.e("tessst", accessToken.);
+//        GraphRequest request = GraphRequest.newMeRequest(
+//                accessToken,
+//                new GraphRequest.GraphJSONObjectCallback() {
+//                    @Override
+//                    public void onCompleted(JSONObject object, GraphResponse response) {
+//                        String json = object.toString();
+//                        try {
+//                            JSONObject obj = new JSONObject(json);
+//                            String name = obj.getString("name");
+//                            Log.e("NAME IS : ", name);
+//                        } catch (JSONException e) {
+//                            e.printStackTrace();
+//                        }
+//                    }
+//                });
+//
+//        Bundle parameters = new Bundle();
+//        parameters.putString("fields", "id,name");
+//        request.setParameters(parameters);
+//        request.executeAsync();
+
+
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
         mAppBarConfiguration = new AppBarConfiguration.Builder(
-                R.id.nav_home, R.id.nav_gallery, R.id.nav_slideshow)
+                R.id.nav_home,
+                R.id.nav_search,
+                R.id.nav_categories,
+                R.id.nav_chat,
+                R.id.nav_request,
+                R.id.nav_settings)
                 .setDrawerLayout(drawer)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
+
     }
 
     @Override
