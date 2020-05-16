@@ -18,6 +18,7 @@ import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
 
 
@@ -28,7 +29,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView info, title1, title2;
     private ImageView profile;
     private LoginButton facebookLogin;
-
+    private TextInputLayout username_layout;
 
     Animation rightAnim;
     CallbackManager callbackManager;
@@ -41,6 +42,7 @@ public class LoginActivity extends AppCompatActivity {
         info = findViewById(R.id.info);
         title1 = findViewById(R.id.title1);
         title2 = findViewById(R.id.title2);
+        username_layout = findViewById(R.id.username);
 
         //Animations
         rightAnim = AnimationUtils.loadAnimation(this, R.anim.right_animation);
@@ -66,6 +68,8 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         });
+
+
     }
 
     @Override
@@ -78,5 +82,10 @@ public class LoginActivity extends AppCompatActivity {
     public void onSignUpClick(View v) {
         Intent i = new Intent(this, SignupActivity.class);
         startActivity(i);
+    }
+
+    public void onLoginClick(View v) {
+        username_layout.setErrorEnabled(true);
+        username_layout.setError("Invalid username!");
     }
 }
