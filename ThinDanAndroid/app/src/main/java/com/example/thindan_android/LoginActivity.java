@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
@@ -15,12 +16,17 @@ import com.facebook.FacebookSdk;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
+import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.squareup.picasso.Picasso;
 
 
 import android.os.Bundle;
+
+import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -30,6 +36,7 @@ public class LoginActivity extends AppCompatActivity {
 
     Animation rightAnim;
     CallbackManager callbackManager;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,9 +59,23 @@ public class LoginActivity extends AppCompatActivity {
 
         facebookLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             @Override public void onSuccess(LoginResult loginResult) {
-                info.setText("User Id : " + loginResult.getAccessToken().getUserId());
-                String imageURL = "https://graph.facebook.com/" + loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1";
-                Picasso.get().load(imageURL).into(profile);
+                //info.setText("User Id : " + loginResult.getAccessToken().getUserId());
+                //String imageURL = "https://graph.facebook.com/" + loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1";
+                //Picasso.get().load(imageURL).into(profile);
+                String userAvatar = "https://graph.facebook.com/" + loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1";
+
+
+
+                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+
+                // Data to be passed from FB login.
+                intent.putExtra("fbUser?", true);
+                intent.putExtra("userID",loginResult.getAccessToken().getUserId());
+                intent.putExtra("userAvatar", userAvatar);
+                //intent.putExtra("userName", userName);
+
+
+                startActivity(intent);
             }
             @Override public void onCancel() {
                 info.setText("Login attempt canceled.");
@@ -72,4 +93,6 @@ public class LoginActivity extends AppCompatActivity {
 
         callbackManager.onActivityResult(requestCode, resultCode, data);
     }
+
+
 }
