@@ -1,19 +1,22 @@
 package com.example.thindan_android;
 
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
+import android.text.Editable;
+import android.text.TextWatcher;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.facebook.AccessToken;
+import com.example.thindan_android.utils.AccessWebTask;
 import com.facebook.FacebookSdk;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -23,6 +26,9 @@ import com.facebook.GraphResponse;
 import com.facebook.Profile;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
+import com.google.android.material.textfield.TextInputEditText;
+import com.google.android.material.textfield.TextInputLayout;
 import com.squareup.picasso.Picasso;
 
 
@@ -31,11 +37,18 @@ import android.os.Bundle;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.net.URL;
+
 public class LoginActivity extends AppCompatActivity {
+
+    private static final int SIGN_UP_ACTIVITY_ID = 0;
+    private static final int MAIN_ACTIVITY = 1;
 
     private TextView info, title1, title2;
     private ImageView profile;
     private LoginButton facebookLogin;
+    private TextInputLayout usernameLayout, passwordLayout;
+    private TextInputEditText username, password;
     private String fullname;
 
     Animation rightAnim;
@@ -50,6 +63,33 @@ public class LoginActivity extends AppCompatActivity {
         info = findViewById(R.id.info);
         title1 = findViewById(R.id.title1);
         title2 = findViewById(R.id.title2);
+        usernameLayout = findViewById(R.id.username_layout);
+        passwordLayout = findViewById(R.id.password_layout);
+        username = findViewById(R.id.username);
+        //to reset error messages when you type
+        username.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            @Override
+            public void afterTextChanged(Editable s) {
+                usernameLayout.setErrorEnabled(false);
+            }
+        });
+
+        password = findViewById(R.id.password);
+        //to reset error messages when you type
+        password.addTextChangedListener(new TextWatcher() {
+            @Override
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            @Override
+            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            @Override
+            public void afterTextChanged(Editable s) {
+                passwordLayout.setErrorEnabled(false);
+            }
+        });
 
         //Animations
         rightAnim = AnimationUtils.loadAnimation(this, R.anim.right_animation);
@@ -116,6 +156,8 @@ public class LoginActivity extends AppCompatActivity {
             }
 
         });
+
+
     }
 
     @Override
@@ -126,7 +168,65 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onSignUpClick(View v) {
+
         Intent i = new Intent(this, SignupActivity.class);
-        startActivity(i);
+        startActivityForResult(i, SIGN_UP_ACTIVITY_ID);
     }
+
+    public void onLoginClick(View v) throws JSONException {
+        //clear errors
+        usernameLayout.setErrorEnabled(false);
+        passwordLayout.setErrorEnabled(false);
+
+        //get text in TextViews
+        String usernameInput = username.getText().toString();
+        String passwordInput = password.getText().toString();
+
+        boolean hasError = false;
+        if (usernameInput.length() == 0) {
+            displayErrorMessage(usernameLayout, "please enter a username!");
+            hasError = true;
+        }
+        if (passwordInput.length() == 0) {
+            displayErrorMessage(passwordLayout, "please enter a password!");
+            hasError = true;
+        }
+
+        if (!hasError) {
+            JSONObject tutor = getTutor(usernameInput);
+            //check if user exists and if password matches
+            if (tutor.length() == 0 || !tutor.getString("password").equals(passwordInput)) {
+                password.setText("");
+                displayErrorMessage(passwordLayout, "Invalid user or password!");
+            } else {
+                Intent i = new Intent(this, MainActivity.class);
+                startActivityForResult(i, MAIN_ACTIVITY);
+            }
+        }
+
+    }
+
+    //display error message on text fields
+    private void displayErrorMessage(TextInputLayout til, String message) {
+        til.setErrorEnabled(true);
+        til.setError(message);
+    }
+
+    // This helper method checks if a username already exists in the database
+    private JSONObject getTutor(String username) throws JSONException {
+        try {
+            // 10.0.2.2 is the host machine as represented by Android Virtual Device
+            URL url = new URL("http://10.0.2.2:3000/getTutor?username=" + username);
+            AccessWebTask task = new AccessWebTask("GET");
+            task.execute(url);
+            // waits for doInBackground to finish, then gets the return value
+            return task.get();
+        } catch (Exception e) {
+            e.printStackTrace();
+            return new JSONObject(); // return empty JSON Object upon encountering an exception
+        }
+    }
+
+
+
 }
