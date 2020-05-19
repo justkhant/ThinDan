@@ -20,7 +20,7 @@
     <string name="splashscreen_app_name">thindan</string>
     <string name="splashscreen_description">bridging the gap between students and tutors</string>
 
-    <!-- login_screen  -->
+    <!-- login/signup_screen  -->
     <string name="login_welcome">welcome to,</string>
     <string name="login_app_name">thindan.</string>
     <string name="login">login</string>
@@ -29,11 +29,16 @@
     <string name="or">OR</string>
     <string name="forgot_password">forgot password?</string>
     <string name="no_account">don\'t have an account? </string>
-
-    <!-- signup  -->
     <string name="signup">sign up</string>
-    <string name="email">Email</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="back_arrow_description">Back arrow image.</string>
+    <!-- verification method screen -->
+    <string name="email">Email</string>
     <string name="phone">Phone Number</string>
-
+    <string name="verification_method_title">select a verification method</string>
+    <string name="continue_s">continue</string>
+    <!-- verification -->
+    <string name="verification_title">enter 4-digit code</string>
+    <string name="enter">enter</string>
+    <string name="zero">0</string>
 </resources>

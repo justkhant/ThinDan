@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/verification_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="116dp"
+        android:text="@string/verification_title"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <LinearLayout
+        android:id="@+id/layout_otp"
+        android:layout_width="match_parent"
+        android:layout_height="90sp"
+        android:layout_marginTop="20dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/verification_title">
+
+        <EditText
+            android:id="@+id/editTextone"
+            android:layout_width="40sp"
+            android:layout_height="42sp"
+            android:autofillHints=""
+            android:hint="@string/zero"
+            android:inputType="number"
+            android:maxLength="1"
+            android:nextFocusRight="@+id/editText_two"
+            android:textAlignment="center">
+
+            <requestFocus />
+        </EditText>
+
+        <EditText
+            android:id="@+id/editTexttwo"
+            android:layout_width="40sp"
+            android:layout_height="42sp"
+            android:autofillHints=""
+            android:hint="@string/zero"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/editTextthree"
+            android:layout_width="40sp"
+            android:layout_height="42sp"
+            android:autofillHints=""
+            android:hint="@string/zero"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center" />
+
+        <EditText
+            android:id="@+id/editTextfour"
+            android:layout_width="40sp"
+            android:layout_height="42sp"
+            android:autofillHints=""
+            android:hint="@string/zero"
+            android:inputType="number"
+            android:maxLength="1"
+            android:textAlignment="center" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/login_button"
+        android:layout_width="155dp"
+        android:layout_height="35dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="32dp"
+        android:background="@drawable/rounded_blue_button"
+        android:text="@string/enter"
+        android:textColor="#FFFFFF"
+        app:cornerRadius="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/layout_otp"
+        android:foreground="?attr/selectableItemBackground" />
+
+    <ImageButton
+        android:id="@+id/imageButton"
+        style="@android:style/Widget.Material.ImageButton"
+        android:layout_width="55dp"
+        android:layout_height="44dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="60dp"
+        android:backgroundTint="#F9F9F9"
+        android:contentDescription="@string/back_arrow_description"
+        android:cropToPadding="false"
+        android:scaleType="centerCrop"
+        android:tint="#8C8C8C"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:srcCompat="@drawable/ic_arrow_back_24dp"
+        android:onClick="onBackClick" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -6,8 +6,9 @@ mongoose.connect("mongodb+srv://khantk:thindan@cluster0-vregg.mongodb.net/test?r
 var Schema = mongoose.Schema;
 
 var tutorSchema = new Schema({
-	facebook_id: {type: String, required: true, unique: true},
-	name: {type: String, required: true}
+	username: {type: String, required: true, unique: true},
+	password: {type: String},
+	name: {type: String}
 });
 
 // export userSchema as a class called User

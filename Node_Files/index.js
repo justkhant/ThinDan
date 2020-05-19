@@ -1,6 +1,6 @@
 // Connect to MongoDB Atlas cluster
 const mongoose = require('mongoose');
-const connector = mongoose.connect("mongodb+srv://khantk:thindan@cluster0-vregg.mongodb.net/test?retryWrites=true&w=majority", { useNewUrlParser: true });
+const connector = mongoose.connect("mongodb+srv://khantk:thindan@cluster0-vregg.mongodb.net/test?retryWrites=true&w=majority");
 
 // set up Express
 var express = require('express');
@@ -26,37 +26,93 @@ var Tutor = require('./Schemas/Tutor.js');
 // route for creating a new User
 // this is the action of the SignUp button on the SignUp Page
 app.use('/createNewTutor', (req, res) => {
-	// construct the User from the form data which is in the request body
+	var username = req.body.username;
+	var password = req.body.password;
+
+	// construct the tutor from the form data which is in the request body
 	var newTutor = new Tutor({
-		facebook_id: "1",
-		name: "Test_User"
+		username: username,
+		password: password
 	});
 
 	console.log("Creating new Tutor...");
-	console.log("Facebook_id: " + newTutor.facebook_id);
-	console.log("Name: " + newTutor.name);
+	console.log(newTutor);
 
-	// save the user to the database
+	// save the tutor to the database
 	newTutor.save((err) => {
 		if (err) {
-			res.type('html').status(200);
-			res.write('uh oh: ' + err);
 			console.log(err);
 			return res.status(200).json({
-				message: "Error creating user"
+				message: err.errmsg
 			});
 		}
 		else {
 
-			console.log("New User Created Successfully...")
+			console.log("New Tutor Created Successfully...")
 			return res.status(200).json({
-				message: "User Created Successfully"
+				message: "Tutor Created Successfully"
 			});
 		}
 	});
 });
 
+//checks if a tutor exists
+app.use('/checkForTutor', (req, res) => {
+	//console.log("Searching for tutor username: " + req.query.username + "...");
 
+	// construct the query object
+	var queryObject = {};
+	if (req.query.username) {
+		queryObject = { "username": req.query.username };
+	}
+
+	Tutor.find(queryObject, (err, tutors) => {
+		if (err) { 
+			console.log('uh oh' + err);
+			return res.json({message : err.err_msg});
+		}
+		else if (tutors.length == 0) {
+			//console.log("Tutor does not exist!");
+			return res.json({exists : false});
+		}
+
+		else if (tutors.length > 0) {
+			var tutor = tutors[0];
+			
+			//console.log("Tutor " + tutor.username + " exists!");
+			return res.json({ exists : true });
+		}
+	});
+});
+
+app.use('/getTutor', (req, res) => {
+	console.log("Searching for tutor username: " + req.query.username + "...");
+
+	// construct the query object
+	var queryObject = {};
+	if (req.query.username) {
+		queryObject = { "username": req.query.username };
+	}
+
+	Tutor.find(queryObject, (err, tutors) => {
+		if (err) { 
+			console.log('uh oh' + err);
+			return res.json({message : err.err_msg});
+		}
+		else if (tutors.length == 0) {
+			console.log("Tutor does not exist!");
+			//return empty json if tutor doesn't exist
+			return res.json({});
+		}
+
+		else if (tutors.length > 0) {
+			var tutor = tutors[0];
+			
+			console.log("Tutor found: " + tutor.username );
+			return res.json({ username: tutor.username, password: tutor.password });
+		}
+	});
+});
 // route for showing all the users
 app.use('/all', (req, res) => {
 	/*

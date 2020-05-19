@@ -54,7 +54,7 @@
         android:textSize="25sp" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/username"
+        android:id="@+id/username_layout"
         android:layout_width="@dimen/edit_text_width"
         android:layout_height="wrap_content"
 
@@ -65,6 +65,7 @@
         app:boxBackgroundMode="outline">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/username"
             android:layout_width="match_parent"
             android:layout_height="@dimen/edit_text_height"
             android:layout_gravity="start"
@@ -77,11 +78,11 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/password"
+        android:id="@+id/password_layout"
         android:layout_width="@dimen/edit_text_width"
         android:layout_height="wrap_content"
 
-        android:layout_below="@+id/username"
+        android:layout_below="@+id/username_layout"
         android:layout_centerHorizontal="true"
         android:layout_marginTop="15dp"
         android:hint="@string/password"
@@ -89,6 +90,7 @@
         app:passwordToggleEnabled="true">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/password"
             android:layout_width="match_parent"
             android:layout_height="@dimen/edit_text_height"
             android:layout_gravity="start"
@@ -104,14 +106,15 @@
         android:id="@+id/login_button"
         android:layout_width="155dp"
         android:layout_height="35dp"
-        android:layout_below="@+id/password"
+        android:layout_below="@+id/password_layout"
         android:layout_marginTop="44dp"
         android:background="@drawable/rounded_blue_button"
         android:text="@string/login"
         android:textColor="#FFFFFF"
         android:layout_centerHorizontal="true"
         android:onClick="onLoginClick"
-        app:cornerRadius="50dp" />
+        app:cornerRadius="50dp"
+        android:foreground="?attr/selectableItemBackground"/>
 
     <TextView
         android:id="@+id/or"
@@ -126,7 +129,7 @@
         android:layout_width="100dp"
         android:layout_height="1dp"
         android:layout_alignTop="@+id/or"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="8dp"
         android:layout_marginEnd="9dp"
         android:layout_toStartOf="@+id/or"
         android:background="@android:color/darker_gray" />
@@ -136,7 +139,7 @@
         android:layout_height="1dp"
         android:layout_alignTop="@+id/or"
         android:layout_marginStart="9dp"
-        android:layout_marginTop="9dp"
+        android:layout_marginTop="8dp"
         android:layout_toEndOf="@+id/or"
         android:background="@android:color/darker_gray" />
 
@@ -144,8 +147,8 @@
         android:id="@+id/forgot_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/password"
-        android:layout_alignEnd="@+id/password"
+        android:layout_below="@+id/password_layout"
+        android:layout_alignEnd="@+id/password_layout"
         android:layout_marginTop="15dp"
         android:layout_marginEnd="0dp"
         android:clickable="true"
