@@ -9,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.animation.Animation;
@@ -17,6 +18,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.example.thindan_android.utils.AccessWebTask;
+import com.facebook.AccessToken;
+import com.facebook.AccessTokenTracker;
 import com.facebook.FacebookSdk;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -24,6 +27,8 @@ import com.facebook.FacebookException;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
 import com.facebook.Profile;
+import com.facebook.ProfileTracker;
+import com.facebook.login.LoginManager;
 import com.facebook.login.LoginResult;
 import com.facebook.login.widget.LoginButton;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
@@ -38,6 +43,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.net.URL;
+import java.util.Arrays;
 
 public class LoginActivity extends AppCompatActivity {
 
@@ -45,15 +51,14 @@ public class LoginActivity extends AppCompatActivity {
     private static final int MAIN_ACTIVITY = 1;
 
     private TextView info, title1, title2;
-    private ImageView profile;
     private LoginButton facebookLogin;
     private TextInputLayout usernameLayout, passwordLayout;
     private TextInputEditText username, password;
-    private String fullname;
 
-    Animation rightAnim;
+    private Animation rightAnim;
     CallbackManager callbackManager;
-
+    private ProfileTracker mProfileTracker;
+    private Profile profile;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -98,30 +103,36 @@ public class LoginActivity extends AppCompatActivity {
 
         //profile = findViewById(R.id.profile);
         facebookLogin = findViewById(R.id.login);
-
         callbackManager = CallbackManager.Factory.create();
 
         facebookLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
-            @Override public void onSuccess(LoginResult loginResult) {
-                //info.setText("User Id : " + loginResult.getAccessToken().getUserId());
-                //String imageURL = "https://graph.facebook.com/" + loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1";
-                //Picasso.get().load(imageURL).into(profile);
+            private boolean fbUser;
+            private String userID;
+            private String userAvatar;
+            private LoginResult mloginResult;
 
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                mloginResult = loginResult;
+                fbUser = true;
+                userID = loginResult.getAccessToken().getUserId();
+                userAvatar = "https://graph.facebook.com/" + loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1";
 
-                Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                Boolean fbUser = true;
-                String userID = loginResult.getAccessToken().getUserId();
-                String userAvatar = "https://graph.facebook.com/" + loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1";
-                //final String[] fullname = {""};
-
-                //final String[] userProfile = {"","",""};
                 GraphRequest request = GraphRequest.newMeRequest( AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
 
                             @Override public void onCompleted(JSONObject object,GraphResponse response) {
                                 try {
                                     String  name = object.getString("name"); // User's full name is acquired here.
+                                    // Data to be passed from FB login.
+                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                                    intent.putExtra("fbUser?", true);
+                                    intent.putExtra("userID", mloginResult.getAccessToken().getUserId());
+                                    intent.putExtra("userAvatar", userAvatar);
+                                    intent.putExtra("fullname", name);
+
+                                    startActivity(intent);
                                     Log.e("User's Full Name ", name);
-                                    fullname = name;
+                                   // fullname = name;
                                     //userProfile[0] = name;
                                     //intent.putExtra("fullname", name);
 
@@ -135,19 +146,9 @@ public class LoginActivity extends AppCompatActivity {
                         });
 
                 request.executeAsync();
-                Log.e("Full name", fullname);
-                //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
-                // Data to be passed from FB login.
-                intent.putExtra("fbUser?", true);
-                intent.putExtra("userID",loginResult.getAccessToken().getUserId());
-                intent.putExtra("userAvatar", userAvatar);
-                intent.putExtra("fullname", fullname);
-
-
-
-                startActivity(intent);
             }
+
             @Override public void onCancel() {
                 info.setText("Login attempt canceled.");
             }
@@ -157,14 +158,90 @@ public class LoginActivity extends AppCompatActivity {
 
         });
 
+    }
 
+    // Private method to handle Facebook login and callback
+    private void onFblogin() {
+        callbackManager = CallbackManager.Factory.create();
+
+        // Set permissions
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email", "user_photos", "public_profile"));
+
+        LoginManager.getInstance().registerCallback(callbackManager,
+                new FacebookCallback<LoginResult>() {
+                    @Override
+                    public void onSuccess(LoginResult loginResult) {
+                        try {
+                            if (Profile.getCurrentProfile() == null) {
+                                mProfileTracker = new ProfileTracker() {
+                                    @Override
+                                    protected void onCurrentProfileChanged(Profile profile_old, Profile profile_new) {
+                                        // profile2 is the new profile
+                                        profile = profile_new;
+                                        mProfileTracker.stopTracking();
+                                    }
+                                };
+                                mProfileTracker.startTracking();
+                            } else {
+                                profile = Profile.getCurrentProfile();
+                            }
+
+                            GraphRequest request = GraphRequest.newMeRequest(
+                                    loginResult.getAccessToken(),
+                                    new GraphRequest.GraphJSONObjectCallback() {
+                                        @Override
+                                        public void onCompleted(JSONObject object, GraphResponse response) {
+                                            Log.v("FACEBOOK LOGIN", response.toString());
+                                            // Application code
+                                            try {
+                                                String fb_id = object.getString("id");
+                                                String fb_name = object.getString("name");
+                                                String profilePicUrl = "https://graph.facebook.com/" + fb_id + "/picture?width=200&height=200";
+                                                String fb_gender = object.getString("gender");
+                                                String fb_email = object.getString("email");
+                                                String fb_birthday = object.getString("birthday");
+                                            } catch (JSONException e) {
+                                                e.printStackTrace();
+                                            }
+
+                                            //use shared preferences here
+                                        }
+                                    });
+                            Bundle parameters = new Bundle();
+                            parameters.putString("fields", "id,name,email,gender,birthday,picture.type(small)");
+                            request.setParameters(parameters);
+                            request.executeAsync();
+
+                            //go to Home page
+                            Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(intent);
+                            finish();
+                        } catch (Exception e) {
+                            Log.d("ERROR", e.toString());
+                        }
+                    }
+
+                    @Override
+                    public void onCancel() {
+                        // Log.d(TAG_CANCEL, "On cancel");
+                    }
+
+                    @Override
+                    public void onError(FacebookException error) {
+                        //Log.d(TAG_ERROR, error.toString());
+                    }
+                });
     }
 
     @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
-        callbackManager.onActivityResult(requestCode, resultCode, data);
+        // if you don't add following block,
+        // your registered `FacebookCallback` won't be called
+        if (callbackManager.onActivityResult(requestCode, resultCode, data)) {
+            return;
+        }
     }
 
     public void onSignUpClick(View v) {

@@ -45,10 +45,8 @@ public class MainActivity extends AppCompatActivity {
         Log.e("fbUser?", String.valueOf(fbUser));
         Log.e("userID", userID);
         Log.e("userAvatarURL", userAvatar);
-        Log.e("fullname", fullname);
 
-
-
+        //Log.e("fullname", fullname);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -108,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_settings)
                 .setDrawerLayout(drawer)
                 .build();
+
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
         NavigationUI.setupActionBarWithNavController(this, navController, mAppBarConfiguration);
         NavigationUI.setupWithNavController(navigationView, navController);
