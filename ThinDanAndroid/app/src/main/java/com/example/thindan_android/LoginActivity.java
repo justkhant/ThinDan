@@ -6,12 +6,14 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.AccessToken;
 import com.facebook.FacebookSdk;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
@@ -26,6 +28,7 @@ import com.squareup.picasso.Picasso;
 
 import android.os.Bundle;
 
+import org.json.JSONException;
 import org.json.JSONObject;
 
 public class LoginActivity extends AppCompatActivity {
@@ -33,7 +36,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextView info, title1, title2;
     private ImageView profile;
     private LoginButton facebookLogin;
-
+    private String fullname;
 
     Animation rightAnim;
     CallbackManager callbackManager;
@@ -63,17 +66,44 @@ public class LoginActivity extends AppCompatActivity {
                 //info.setText("User Id : " + loginResult.getAccessToken().getUserId());
                 //String imageURL = "https://graph.facebook.com/" + loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1";
                 //Picasso.get().load(imageURL).into(profile);
-                String userAvatar = "https://graph.facebook.com/" + loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1";
-
 
 
                 Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                Boolean fbUser = true;
+                String userID = loginResult.getAccessToken().getUserId();
+                String userAvatar = "https://graph.facebook.com/" + loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1";
+                //final String[] fullname = {""};
+
+                //final String[] userProfile = {"","",""};
+                GraphRequest request = GraphRequest.newMeRequest( AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+
+                            @Override public void onCompleted(JSONObject object,GraphResponse response) {
+                                try {
+                                    String  name = object.getString("name"); // User's full name is acquired here.
+                                    Log.e("User's Full Name ", name);
+                                    fullname = name;
+                                    //userProfile[0] = name;
+                                    //intent.putExtra("fullname", name);
+
+                                } catch (JSONException e) {
+                                    // TODO Auto-generated catch block
+                                    e.printStackTrace();
+                                }
+
+                            }
+
+                        });
+
+                request.executeAsync();
+                Log.e("Full name", fullname);
+                //Intent intent = new Intent(LoginActivity.this, MainActivity.class);
 
                 // Data to be passed from FB login.
                 intent.putExtra("fbUser?", true);
                 intent.putExtra("userID",loginResult.getAccessToken().getUserId());
                 intent.putExtra("userAvatar", userAvatar);
-                //intent.putExtra("userName", userName);
+                intent.putExtra("fullname", fullname);
+
 
 
                 startActivity(intent);
