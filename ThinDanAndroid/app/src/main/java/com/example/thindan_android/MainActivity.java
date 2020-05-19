@@ -41,11 +41,11 @@ public class MainActivity extends AppCompatActivity {
         Boolean fbUser = getIntent().getBooleanExtra("fbUser", false);
         String userID = getIntent().getStringExtra("userID");
         String userAvatar = getIntent().getStringExtra("userAvatar");
-        //String userName = getIntent().getStringExtra("userName");
-        Log.i("fbUser?", String.valueOf(fbUser));
-        Log.i("userID", userID);
-        Log.i("userAvatarURL", userAvatar);
-        //Log.i("userName", userName);
+        String fullname = getIntent().getStringExtra("fullname");
+        Log.e("fbUser?", String.valueOf(fbUser));
+        Log.e("userID", userID);
+        Log.e("userAvatarURL", userAvatar);
+        Log.e("fullname", fullname);
 
 
 
@@ -66,10 +66,12 @@ public class MainActivity extends AppCompatActivity {
         // Setting up Nav Drawer Header Programmatically
         View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
         ImageView avatar = (ImageView) headerView.findViewById(R.id.imageView);
-        final TextView name = (TextView) headerView.findViewById(R.id.textView);
+        TextView name = (TextView) headerView.findViewById(R.id.navtitlename);
+        final TextView subname = (TextView) headerView.findViewById(R.id.textView);
 
         Picasso.get().load(userAvatar).into(avatar);
-        name.setText(userID);
+        name.setText(fullname);
+        subname.setText(userID);
 
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         //Log.e("tessst", accessToken.);
