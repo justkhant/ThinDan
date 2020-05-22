@@ -8,6 +8,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.PagerAdapter;
 
 import com.example.thindan_android.R;
@@ -43,6 +45,26 @@ public class ProfileCardAdapter extends PagerAdapter {
         TextView subject = view.findViewById(R.id.profile_card_subject);
         TextView name = view.findViewById(R.id.profile_card_name);
         TextView description = view.findViewById(R.id.profile_card_description);
+
+        RecyclerView tags = view.findViewById(R.id.profile_card_tags);
+        RecyclerView.LayoutManager recyclerViewLayoutManager = new LinearLayoutManager(context);
+
+        // Set LayoutManager on Recycler View
+        tags.setLayoutManager(recyclerViewLayoutManager);
+
+        // calling constructor of adapter
+        // with tag list as a parameter
+        SubjectTagAdapter adapter = new SubjectTagAdapter(models.get(position).getTags());
+
+        // Set Horizontal Layout Manager
+        // for Recycler view
+        LinearLayoutManager horizontalLayout = new LinearLayoutManager(
+                context, LinearLayoutManager.HORIZONTAL, false);
+
+        tags.setLayoutManager(horizontalLayout);
+
+        // Set adapter on recycler view
+        tags.setAdapter(adapter);
 
         profilePic.setImageResource(models.get(position).getImage());
         subject.setText(models.get(position).getSubject());

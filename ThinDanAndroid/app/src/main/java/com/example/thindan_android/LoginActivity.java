@@ -38,6 +38,7 @@ import com.squareup.picasso.Picasso;
 
 
 import android.os.Bundle;
+import android.widget.Toast;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -105,6 +106,7 @@ public class LoginActivity extends AppCompatActivity {
         facebookLogin = findViewById(R.id.login);
         callbackManager = CallbackManager.Factory.create();
 
+        facebookLogin.setReadPermissions(Arrays.asList("user_name"));
         facebookLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             private boolean fbUser;
             private String userID;
@@ -150,10 +152,10 @@ public class LoginActivity extends AppCompatActivity {
             }
 
             @Override public void onCancel() {
-                info.setText("Login attempt canceled.");
+                Toast.makeText(LoginActivity.this, "Login attempt canceled.", Toast.LENGTH_SHORT);
             }
             @Override public void onError(FacebookException error) {
-                info.setText("login attempt failed.");
+                Toast.makeText(LoginActivity.this, "Login error.", Toast.LENGTH_SHORT);
             }
 
         });
@@ -277,6 +279,9 @@ public class LoginActivity extends AppCompatActivity {
                 displayErrorMessage(passwordLayout, "Invalid user or password!");
             } else {
                 Intent i = new Intent(this, MainActivity.class);
+                i.putExtra("userID", usernameInput);
+                i.putExtra("fullname", usernameInput);
+                i.putExtra("avatar", "");
                 startActivityForResult(i, MAIN_ACTIVITY);
             }
         }

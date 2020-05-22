@@ -17,6 +17,7 @@ import com.example.thindan_android.utils.ProfileCardAdapter;
 import com.example.thindan_android.utils.ProfileCardModel;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
@@ -35,13 +36,18 @@ public class HomeFragment extends Fragment {
         models = new ArrayList<>();
         models.add(new ProfileCardModel(R.drawable.com_facebook_profile_picture_blank_portrait,
                 "English", "Sayar Kyaw Swar",
-                "Greyhound disively hello coldly wonderfully marginally far.." ));
+                "Greyhound disively hello coldly wonderfully marginally far..",
+                 Arrays.asList("SAT English", "IGCSE Eng", "AP English")));
+
         models.add(new ProfileCardModel(R.drawable.com_facebook_profile_picture_blank_portrait,
                 "Math", "Kaung Khant",
-                "Greyhound disively hello coldly wonderfully marginally far.." ));
+                "Greyhound disively hello coldly wonderfully marginally far..",
+                Arrays.asList("SAT Math", "A level Math", "Olympian Math", "Calculus II")));
+
         models.add(new ProfileCardModel(R.drawable.com_facebook_profile_picture_blank_portrait,
                 "Chemistry", "Timmy Tseng",
-                "Greyhound disively hello coldly wonderfully marginally far.." ));
+                "Greyhound disively hello coldly wonderfully marginally far..",
+                Arrays.asList("AP Chemistry", "IB Chemistry", "SAT Chemistry", "Orgo Chemistry")));
 
         adapter = new ProfileCardAdapter(models, root.getContext());
 

@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
         String fullname = getIntent().getStringExtra("fullname");
         Log.e("fbUser?", String.valueOf(fbUser));
         Log.e("userID", userID);
-        Log.e("userAvatarURL", userAvatar);
+//        Log.e("userAvatarURL", userAvatar);
 
         //Log.e("fullname", fullname);
 

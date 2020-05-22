@@ -1,16 +1,20 @@
 package com.example.thindan_android.utils;
 
+import java.util.List;
+
 public class ProfileCardModel {
     private int image;
     private String subject;
     private String name;
     private String description;
+    private List<String> tags;
 
-    public ProfileCardModel(int image, String subject, String name, String description) {
+    public ProfileCardModel(int image, String subject, String name, String description, List<String> tags) {
         this.image = image;
         this.subject = subject;
         this.name = name;
         this.description = description;
+        this.tags = tags;
     }
 
     public int getImage() {
@@ -43,5 +47,13 @@ public class ProfileCardModel {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public List<String> getTags() {
+        return tags;
+    }
+
+    public void setTags(List<String> tags) {
+        this.tags = tags;
     }
 }
