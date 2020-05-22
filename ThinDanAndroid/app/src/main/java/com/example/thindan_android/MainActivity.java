@@ -1,20 +1,25 @@
 package com.example.thindan_android;
 
+import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.view.Menu;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.facebook.AccessToken;
+import com.facebook.FacebookSdk;
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.facebook.login.LoginManager;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
+
 
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
@@ -31,6 +36,7 @@ public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
 
+    @SuppressLint("ResourceAsColor")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +69,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Setting up Nav Drawer Header Programmatically
         View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
+        headerView.setBackgroundColor(R.color.colorPrimary); // ERROR: Instead of getting the nice blue, it gets ugly purple.
         ImageView avatar = (ImageView) headerView.findViewById(R.id.imageView);
         TextView name = (TextView) headerView.findViewById(R.id.navtitlename);
         final TextView subname = (TextView) headerView.findViewById(R.id.textView);
@@ -72,27 +79,7 @@ public class MainActivity extends AppCompatActivity {
         subname.setText(userID);
 
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        //Log.e("tessst", accessToken.);
-//        GraphRequest request = GraphRequest.newMeRequest(
-//                accessToken,
-//                new GraphRequest.GraphJSONObjectCallback() {
-//                    @Override
-//                    public void onCompleted(JSONObject object, GraphResponse response) {
-//                        String json = object.toString();
-//                        try {
-//                            JSONObject obj = new JSONObject(json);
-//                            String name = obj.getString("name");
-//                            Log.e("NAME IS : ", name);
-//                        } catch (JSONException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-//                });
-//
-//        Bundle parameters = new Bundle();
-//        parameters.putString("fields", "id,name");
-//        request.setParameters(parameters);
-//        request.executeAsync();
+
 
 
         // Passing each menu ID as a set of Ids because each
