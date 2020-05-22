@@ -41,4 +41,12 @@
     <string name="verification_title">enter 4-digit code</string>
     <string name="enter">enter</string>
     <string name="zero">0</string>
+
+
+    <!-- home page -->
+    <string name="profile_pic">Profile Pic.</string>
+    <string name="featured">Featured</string>
+    <string name="temp_subject">English</string>
+    <string name="temp_tutor_name">Sayar Kyaw Swar</string>
+    <string name="temp_description">Greyhound disively hello coldly wonderfully marginally far..</string>
 </resources>
