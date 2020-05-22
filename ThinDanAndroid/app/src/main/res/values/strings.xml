@@ -10,6 +10,7 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <string name="mingalarbar">Mingalarbar</string>
 
     <string name="home_second">Home Second</string>
 
@@ -42,11 +43,11 @@
     <string name="enter">enter</string>
     <string name="zero">0</string>
 
-
     <!-- home page -->
     <string name="profile_pic">Profile Pic.</string>
     <string name="featured">Featured</string>
     <string name="temp_subject">English</string>
     <string name="temp_tutor_name">Sayar Kyaw Swar</string>
     <string name="temp_description">Greyhound disively hello coldly wonderfully marginally far..</string>
+
 </resources>
