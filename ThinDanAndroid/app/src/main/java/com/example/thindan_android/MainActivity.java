@@ -3,20 +3,27 @@ package com.example.thindan_android;
 import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.thindan_android.ui.home.HomeFragment;
+import com.example.thindan_android.ui.settings.SettingsFragment;
 import com.facebook.AccessToken;
 
+import com.facebook.GraphRequest;
+import com.facebook.GraphResponse;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
 
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -25,9 +32,16 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    boolean fbUser;
+    String userID;
+    String userAvatar;
+    String fullname;
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -35,12 +49,45 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        // Intent to recieve FB login data from LoginActivity
-        //Intent intent = getIntent();
-        Boolean fbUser = getIntent().getBooleanExtra("fbUser", false);
-        String userID = getIntent().getStringExtra("userID");
-        String userAvatar = getIntent().getStringExtra("userAvatar");
-        String fullname = getIntent().getStringExtra("fullname");
+        Boolean logged_in_at_startup = getIntent().getBooleanExtra("logged_in_at_startup", false);
+        Log.e("Logged In at Startup?", String.valueOf(logged_in_at_startup));
+
+
+        if (logged_in_at_startup) {
+            AccessToken accessToken = AccessToken.getCurrentAccessToken();
+
+            fbUser = true;
+            userID = accessToken.getUserId();
+            userAvatar = "https://graph.facebook.com/" + userID + "/picture?return_ssl_resources=1";
+
+            GraphRequest request = GraphRequest.newMeRequest(
+                    accessToken,
+                    new GraphRequest.GraphJSONObjectCallback() {
+                        @Override
+                        public void onCompleted(JSONObject object, GraphResponse response) {
+                            // Application code
+                            try {
+                                String name = object.getString("name"); // User's full name is acquired here.
+                                //userID = object.getString("id");
+                                fullname = name;
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+            Bundle parameters = new Bundle();
+            parameters.putString("fields", "id,name,link");
+            request.setParameters(parameters);
+            request.executeAsync();
+        } else {
+            // Intent to recieve FB login data from LoginActivity
+            //Intent intent = getIntent();
+            fbUser = getIntent().getBooleanExtra("fbUser", false);
+            userID = getIntent().getStringExtra("userID");
+            userAvatar = getIntent().getStringExtra("userAvatar");
+            fullname = getIntent().getStringExtra("fullname");
+        }
+
         Log.e("fbUser?", String.valueOf(fbUser));
         Log.e("userID", userID);
 //        Log.e("userAvatarURL", userAvatar);
@@ -104,4 +151,5 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
 }
