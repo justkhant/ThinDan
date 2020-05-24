@@ -108,7 +108,6 @@ public class LoginActivity extends AppCompatActivity {
         facebookLogin = findViewById(R.id.login);
         callbackManager = CallbackManager.Factory.create();
 
-        
         facebookLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             private boolean fbUser;
             private String userID;

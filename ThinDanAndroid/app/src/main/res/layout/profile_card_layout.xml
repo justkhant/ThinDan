@@ -14,7 +14,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="220dp">
+            android:layout_height="200dp">
 
             <ImageView
                 android:id="@+id/profile_card_profilePic"
@@ -27,7 +27,7 @@
                 android:background="#E3D8D8"
                 android:contentDescription="@string/profile_pic"
                 android:scaleType="centerCrop"
-                app:srcCompat="@drawable/com_facebook_profile_picture_blank_portrait" />
+                tools:srcCompat="@tools:sample/avatars[0]" />
 
             <TextView
                 android:id="@+id/profile_card_subject"
@@ -75,7 +75,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/profile_card_tags"
                 android:layout_width="320dp"
-                android:layout_height="50dp"
+                android:layout_height="42dp"
                 android:layout_alignParentStart="true"
                 android:layout_alignParentEnd="true"
                 android:layout_alignParentBottom="true"

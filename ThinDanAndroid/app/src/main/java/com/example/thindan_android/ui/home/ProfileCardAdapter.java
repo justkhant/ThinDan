@@ -1,4 +1,4 @@
-package com.example.thindan_android.utils;
+package com.example.thindan_android.ui.home;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -80,4 +80,5 @@ public class ProfileCardAdapter extends PagerAdapter {
     public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
         container.removeView((View) object);
     }
+
 }

@@ -1,4 +1,4 @@
-package com.example.thindan_android.utils;
+package com.example.thindan_android.ui.home;
 
 import java.util.List;
 
