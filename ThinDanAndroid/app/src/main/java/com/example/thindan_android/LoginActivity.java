@@ -17,6 +17,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.example.thindan_android.utils.AccessWebTask;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
@@ -106,7 +108,7 @@ public class LoginActivity extends AppCompatActivity {
         facebookLogin = findViewById(R.id.login);
         callbackManager = CallbackManager.Factory.create();
 
-        facebookLogin.setReadPermissions(Arrays.asList("user_name"));
+        
         facebookLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             private boolean fbUser;
             private String userID;
