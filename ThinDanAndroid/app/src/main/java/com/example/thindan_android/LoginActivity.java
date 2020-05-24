@@ -61,10 +61,14 @@ public class LoginActivity extends AppCompatActivity {
     private ProfileTracker mProfileTracker;
     private Profile profile;
 
+    public Boolean logged_in_at_startup = false;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
+        loggedInStartupHelper();
 
         info = findViewById(R.id.info);
         title1 = findViewById(R.id.title1);
@@ -75,9 +79,13 @@ public class LoginActivity extends AppCompatActivity {
         //to reset error messages when you type
         username.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
             @Override
             public void afterTextChanged(Editable s) {
                 usernameLayout.setErrorEnabled(false);
@@ -88,9 +96,13 @@ public class LoginActivity extends AppCompatActivity {
         //to reset error messages when you type
         password.addTextChangedListener(new TextWatcher() {
             @Override
-            public void beforeTextChanged(CharSequence s, int start, int count, int after) { }
+            public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+            }
+
             @Override
-            public void onTextChanged(CharSequence s, int start, int before, int count) { }
+            public void onTextChanged(CharSequence s, int start, int before, int count) {
+            }
+
             @Override
             public void afterTextChanged(Editable s) {
                 passwordLayout.setErrorEnabled(false);
@@ -119,47 +131,55 @@ public class LoginActivity extends AppCompatActivity {
                 userID = loginResult.getAccessToken().getUserId();
                 userAvatar = "https://graph.facebook.com/" + loginResult.getAccessToken().getUserId() + "/picture?return_ssl_resources=1";
 
-                GraphRequest request = GraphRequest.newMeRequest( AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
+                GraphRequest request = GraphRequest.newMeRequest(AccessToken.getCurrentAccessToken(), new GraphRequest.GraphJSONObjectCallback() {
 
-                            @Override public void onCompleted(JSONObject object,GraphResponse response) {
-                                try {
-                                    String  name = object.getString("name"); // User's full name is acquired here.
-                                    // Data to be passed from FB login.
-                                    Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-                                    intent.putExtra("fbUser?", true);
-                                    intent.putExtra("userID", mloginResult.getAccessToken().getUserId());
-                                    intent.putExtra("userAvatar", userAvatar);
-                                    intent.putExtra("fullname", name);
+                    @Override
+                    public void onCompleted(JSONObject object, GraphResponse response) {
+                        try {
+                            String name = object.getString("name"); // User's full name is acquired here.
+                            // Data to be passed from FB login.
+                            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+                            intent.putExtra("fbUser?", true);
+                            intent.putExtra("userID", mloginResult.getAccessToken().getUserId());
+                            intent.putExtra("userAvatar", userAvatar);
+                            intent.putExtra("fullname", name);
 
-                                    startActivity(intent);
-                                    Log.e("User's Full Name ", name);
-                                   // fullname = name;
-                                    //userProfile[0] = name;
-                                    //intent.putExtra("fullname", name);
+                            startActivity(intent);
+                            Log.e("User's Full Name ", name);
+                            // fullname = name;
+                            //userProfile[0] = name;
+                            //intent.putExtra("fullname", name);
 
-                                } catch (JSONException e) {
-                                    // TODO Auto-generated catch block
-                                    e.printStackTrace();
-                                }
+                        } catch (JSONException e) {
+                            // TODO Auto-generated catch block
+                            e.printStackTrace();
+                        }
 
-                            }
+                    }
 
-                        });
+                });
 
                 request.executeAsync();
 
             }
 
-            @Override public void onCancel() {
+            @Override
+            public void onCancel() {
                 Toast.makeText(LoginActivity.this, "Login attempt canceled.", Toast.LENGTH_SHORT);
             }
-            @Override public void onError(FacebookException error) {
+
+            @Override
+            public void onError(FacebookException error) {
                 Toast.makeText(LoginActivity.this, "Login error.", Toast.LENGTH_SHORT);
             }
 
         });
 
+
+
     }
+
+
 
     // Private method to handle Facebook login and callback
     private void onFblogin() {
@@ -308,6 +328,20 @@ public class LoginActivity extends AppCompatActivity {
         }
     }
 
+    private void loggedInStartupHelper() {
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        if(accessToken != null) {
+
+            Log.e("Is Logged In?", "TRUE");
+            logged_in_at_startup = true;
+
+            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
+            intent.putExtra("logged_in_at_startup",logged_in_at_startup);
+            startActivity(intent);
+        } else {
+            Log.e("Is Logged In?", "FALSE");
+        }
+    }
 
 
 }
