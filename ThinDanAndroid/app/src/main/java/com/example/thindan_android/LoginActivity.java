@@ -17,6 +17,8 @@ import android.view.animation.AnimationUtils;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.facebook.FacebookSdk;
+import com.facebook.appevents.AppEventsLogger;
 import com.example.thindan_android.utils.AccessWebTask;
 import com.facebook.AccessToken;
 import com.facebook.AccessTokenTracker;
