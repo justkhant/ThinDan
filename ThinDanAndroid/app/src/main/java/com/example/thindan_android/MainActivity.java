@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity {
 
         // Setting up Nav Drawer Header Programmatically
         View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
-        headerView.setBackgroundColor(R.color.colorPrimary); // ERROR: Instead of getting the nice blue, it gets ugly purple.
+
         ImageView avatar = (ImageView) headerView.findViewById(R.id.imageView);
         TextView name = (TextView) headerView.findViewById(R.id.navtitlename);
         final TextView subname = (TextView) headerView.findViewById(R.id.textView);
