@@ -6,15 +6,14 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
-import androidx.lifecycle.ViewModelProviders;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.PagerSnapHelper;
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.SnapHelper;
 import androidx.viewpager.widget.ViewPager;
-import androidx.viewpager2.widget.ViewPager2;
 
 import com.example.thindan_android.R;
-import com.example.thindan_android.utils.ProfileCardAdapter;
-import com.example.thindan_android.utils.ProfileCardModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -22,40 +21,78 @@ import java.util.List;
 
 public class HomeFragment extends Fragment {
 
-    private HomeViewModel homeViewModel;
     private ViewPager viewPager;
-    private ProfileCardAdapter adapter;
-    List<ProfileCardModel> models;
+    private ProfileCardAdapter profileCardAdapter;
+    List<ProfileCardModel> profileCardModels;
+
+    private RecyclerView popularSubjectsRecyclerView;
+    private SubjectCardAdapter subjectCardAdapter;
+    List<SubjectCardModel> subjectCardModels;
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
-        homeViewModel =
-                ViewModelProviders.of(this).get(HomeViewModel.class);
+
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        models = new ArrayList<>();
-        models.add(new ProfileCardModel(R.drawable.com_facebook_profile_picture_blank_portrait,
+        //set up profile cards
+        addProfileCards();
+        profileCardAdapter = new ProfileCardAdapter(profileCardModels, root.getContext());
+        viewPager = root.findViewById(R.id.viewPager);
+        viewPager.setAdapter(profileCardAdapter);
+        viewPager.setPadding(60, 0, 60, 0);
+
+        //set up subject recycler view
+        addSubjectCards();
+        popularSubjectsRecyclerView = root.findViewById(R.id.popular_subjects_recycler);
+        subjectCardAdapter = new SubjectCardAdapter(subjectCardModels);
+        RecyclerView.LayoutManager layoutManager = new CenterZoomLayoutManager(root.getContext(), LinearLayoutManager.HORIZONTAL, false);
+        popularSubjectsRecyclerView.setLayoutManager(layoutManager);
+        popularSubjectsRecyclerView.setAdapter(subjectCardAdapter);
+        SnapHelper helper = new PagerSnapHelper();
+        helper.attachToRecyclerView(popularSubjectsRecyclerView);
+        // scroll to middle item
+        popularSubjectsRecyclerView.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
+
+        return root;
+    }
+
+    public void addProfileCards() {
+        //set up profile cards view pager
+        profileCardModels = new ArrayList<>();
+        profileCardModels.add(new ProfileCardModel(R.drawable.com_facebook_profile_picture_blank_portrait,
                 "English", "Sayar Kyaw Swar",
                 "Greyhound disively hello coldly wonderfully marginally far..",
-                 Arrays.asList("SAT English", "IGCSE Eng", "AP English")));
+                Arrays.asList("SAT English", "IGCSE Eng", "AP English")));
 
-        models.add(new ProfileCardModel(R.drawable.com_facebook_profile_picture_blank_portrait,
+        profileCardModels.add(new ProfileCardModel(R.drawable.com_facebook_profile_picture_blank_portrait,
                 "Math", "Kaung Khant",
                 "Greyhound disively hello coldly wonderfully marginally far..",
                 Arrays.asList("SAT Math", "A level Math", "Olympian Math", "Calculus II")));
 
-        models.add(new ProfileCardModel(R.drawable.com_facebook_profile_picture_blank_portrait,
+        profileCardModels.add(new ProfileCardModel(R.drawable.com_facebook_profile_picture_blank_portrait,
                 "Chemistry", "Timmy Tseng",
                 "Greyhound disively hello coldly wonderfully marginally far..",
                 Arrays.asList("AP Chemistry", "IB Chemistry", "SAT Chemistry", "Orgo Chemistry")));
 
-        adapter = new ProfileCardAdapter(models, root.getContext());
+    }
 
-        viewPager = root.findViewById(R.id.viewPager);
-        viewPager.setAdapter(adapter);
-        viewPager.setPadding(60, 0, 60, 0);
-
-        return root;
+    public void addSubjectCards() {
+        subjectCardModels = new ArrayList<>();
+        subjectCardModels.add(new SubjectCardModel(R.mipmap.temp_picture,
+                "English",
+                "SAT Eng, AP Eng, IGCSE Eng, Vocabulary, Reading, ..."));
+        subjectCardModels.add(new SubjectCardModel(R.mipmap.temp_picture,
+                "Math",
+                "SAT Math I, SAT Math II, Calculus, AP Stats, IB HL, ..."));
+        subjectCardModels.add(new SubjectCardModel(R.mipmap.temp_picture,
+                "Physics",
+                "SAT Physics II, AP Physics, IB Physics, ..."));
+        subjectCardModels.add(new SubjectCardModel(R.mipmap.temp_picture,
+                "Chemistry",
+                "SAT Chemistry II, AP Chemistry, IB Chemistry, ..."));
+        subjectCardModels.add(new SubjectCardModel(R.mipmap.temp_picture,
+                "Mandarin",
+                "SAT Mandarin II, AP Mandarin, IB Mandarin, ..."));
     }
 
 }

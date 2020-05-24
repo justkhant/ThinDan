@@ -32,7 +32,8 @@
                 android:minWidth="100dp"
                 android:paddingHorizontal="10dp"
                 android:text="@string/temp_subject_tag"
-                android:textAlignment="center" />
+                android:textAlignment="center"
+                android:textColor="#000000" />
         </RelativeLayout>
 
     </androidx.cardview.widget.CardView>

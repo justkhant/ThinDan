@@ -50,5 +50,8 @@
     <string name="temp_tutor_name">Sayar Kyaw Swar</string>
     <string name="temp_description">Greyhound disively hello coldly wonderfully marginally far..</string>
     <string name="temp_subject_tag">SAT English</string>
+    <string name="popular_subjects">Popular Subjects</string>
+    <string name="subject_picture_description">Subject Picture</string>
+    <string name="temp_subject_categories">SAT Eng, AP Eng, IGCSE Eng, Vocabulary, Reading, ...</string>
 
 </resources>

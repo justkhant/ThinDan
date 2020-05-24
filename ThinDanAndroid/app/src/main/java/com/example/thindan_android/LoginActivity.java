@@ -106,7 +106,6 @@ public class LoginActivity extends AppCompatActivity {
         facebookLogin = findViewById(R.id.login);
         callbackManager = CallbackManager.Factory.create();
 
-        facebookLogin.setReadPermissions(Arrays.asList("user_name"));
         facebookLogin.registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
             private boolean fbUser;
             private String userID;
