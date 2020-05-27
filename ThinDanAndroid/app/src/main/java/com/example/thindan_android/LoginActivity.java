@@ -63,14 +63,11 @@ public class LoginActivity extends AppCompatActivity {
     private ProfileTracker mProfileTracker;
     private Profile profile;
 
-    public Boolean logged_in_at_startup = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
-
-        loggedInStartupHelper();
 
         info = findViewById(R.id.info);
         title1 = findViewById(R.id.title1);
@@ -329,21 +326,5 @@ public class LoginActivity extends AppCompatActivity {
             return new JSONObject(); // return empty JSON Object upon encountering an exception
         }
     }
-
-    private void loggedInStartupHelper() {
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-        if(accessToken != null) {
-
-            Log.e("Is Logged In?", "TRUE");
-            logged_in_at_startup = true;
-
-            Intent intent = new Intent(LoginActivity.this, MainActivity.class);
-            intent.putExtra("logged_in_at_startup",logged_in_at_startup);
-            startActivity(intent);
-        } else {
-            Log.e("Is Logged In?", "FALSE");
-        }
-    }
-
 
 }
