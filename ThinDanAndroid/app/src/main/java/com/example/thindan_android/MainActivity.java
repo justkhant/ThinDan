@@ -53,43 +53,18 @@ public class MainActivity extends AppCompatActivity {
         Log.e("Logged In at Startup?", String.valueOf(logged_in_at_startup));
 
 
-        if (logged_in_at_startup) {
-            AccessToken accessToken = AccessToken.getCurrentAccessToken();
-
-            fbUser = true;
-            userID = accessToken.getUserId();
-            userAvatar = "https://graph.facebook.com/" + userID + "/picture?return_ssl_resources=1";
-
-            GraphRequest request = GraphRequest.newMeRequest(
-                    accessToken,
-                    new GraphRequest.GraphJSONObjectCallback() {
-                        @Override
-                        public void onCompleted(JSONObject object, GraphResponse response) {
-                            // Application code
-                            try {
-                                String name = object.getString("name"); // User's full name is acquired here.
-                                //userID = object.getString("id");
-                                fullname = name;
-                            } catch (JSONException e) {
-                                e.printStackTrace();
-                            }
-                        }
-                    });
-            Bundle parameters = new Bundle();
-            parameters.putString("fields", "id,name,link");
-            request.setParameters(parameters);
-            request.executeAsync();
-        } else {
-            // Intent to recieve FB login data from LoginActivity
-            //Intent intent = getIntent();
+        if(!logged_in_at_startup) {
             fbUser = getIntent().getBooleanExtra("fbUser", false);
             userID = getIntent().getStringExtra("userID");
             userAvatar = getIntent().getStringExtra("userAvatar");
             fullname = getIntent().getStringExtra("fullname");
+        } else {
+            fbUser = true;
+            userAvatar = "https://graph.facebook.com/" + userID + "/picture?return_ssl_resources=1";
         }
 
-        Log.e("fbUser?", String.valueOf(fbUser));
-        Log.e("userID", userID);
+        //Log.e("fbUser?", String.valueOf(fbUser));
+        //Log.e("userID", userID);
 //        Log.e("userAvatarURL", userAvatar);
 
         //Log.e("fullname", fullname);
@@ -111,14 +86,43 @@ public class MainActivity extends AppCompatActivity {
         View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
 
         ImageView avatar = (ImageView) headerView.findViewById(R.id.imageView);
-        TextView name = (TextView) headerView.findViewById(R.id.navtitlename);
+        final TextView name = (TextView) headerView.findViewById(R.id.navtitlename);
         final TextView subname = (TextView) headerView.findViewById(R.id.textView);
+
+
+
+        if (logged_in_at_startup) {
+            AccessToken accessToken = AccessToken.getCurrentAccessToken();
+
+            fbUser = true;
+            userID = accessToken.getUserId();
+            userAvatar = "https://graph.facebook.com/" + userID + "/picture?return_ssl_resources=1";
+
+            GraphRequest request = GraphRequest.newMeRequest(
+                    accessToken,
+                    new GraphRequest.GraphJSONObjectCallback() {
+                        @Override
+                        public void onCompleted(JSONObject object, GraphResponse response) {
+                            // Application code
+                            try {
+                                String fbname = object.getString("name"); // User's full name is acquired here.
+                                name.setText(fbname);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+            Bundle parameters = new Bundle();
+            parameters.putString("fields", "id,name,link");
+            request.setParameters(parameters);
+            request.executeAsync();
+        }
 
         Picasso.get().load(userAvatar).into(avatar);
         name.setText(fullname);
         subname.setText(userID);
 
-        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        //AccessToken accessToken = AccessToken.getCurrentAccessToken();
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
