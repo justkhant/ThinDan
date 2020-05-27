@@ -10,12 +10,16 @@ import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.facebook.AccessToken;
+
 public class SplashScreenActivity extends AppCompatActivity {
 
     private static final int SPLASH_SCREEN_DURATION = 3000;
 
     private Animation topAnim, bottomAnim;
     private TextView name, description;
+
+    public Boolean logged_in_at_startup = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,10 +44,23 @@ public class SplashScreenActivity extends AppCompatActivity {
 
             @Override
             public void run() {
-                Intent i = new Intent(SplashScreenActivity.this, LoginActivity.class);
-                startActivity(i);
+                if (loggedIn()){
+                    logged_in_at_startup = true;
+                    Intent go_to_main = new Intent(SplashScreenActivity.this, MainActivity.class);
+                    go_to_main.putExtra("logged_in_at_startup",logged_in_at_startup);
+                    startActivity(go_to_main);
+                } else {
+                    Intent go_to_login = new Intent(SplashScreenActivity.this, LoginActivity.class);
+                    startActivity(go_to_login);
+                }
                 finish();
             }
         }, SPLASH_SCREEN_DURATION);
+    }
+
+
+    private boolean loggedIn() {
+        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+        return accessToken != null;
     }
 }
