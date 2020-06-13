@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="match_parent"
+    android:padding="6dip" >
+
+    <TextView
+        android:id="@+id/category_title"
+        android:layout_width="250dp"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="false"
+        android:layout_alignParentTop="true"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:textColor="@color/black"
+        android:text="Category Title"
+        android:textSize="16sp"
+        android:textAllCaps="true"/>
+    <TextView
+        android:id="@+id/thindan_count"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/category_title"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:textColor="@color/black"
+        android:text="12345 ThinDans"
+        android:textSize="10sp"/>
+    <TextView
+        android:id="@+id/sub_categories"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/category_title"
+        android:padding="@dimen/activity_horizontal_margin"
+        android:textColor="@color/black"
+        android:text="Sub Categories"
+        android:textSize="12sp"/>
+</RelativeLayout>
