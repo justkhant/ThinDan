@@ -16,7 +16,8 @@
     <string name="menu_settings">Settings</string>
 
     <string name="menu_gallery">Gallery</string>
-    //<string name="menu_slideshow">Slideshow</string>
+    //
+    <string name="menu_slideshow">Slideshow</string>
     <string name="mingalarbar">Mingalarbar</string>
 
     <string name="home_second">Home Second</string>
@@ -63,5 +64,20 @@
 
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- search -->
+    <string name="search_test">This is search page!</string>
+
+    <!-- categories -->
+    <string name="categories_test">This is categories page!</string>
+
+    <!-- chat -->
+    <string name="chat_test">This is chat page!</string>
+
+    <!-- request -->
+    <string name="request_test">This is request page!</string>
+
+    <!-- settings -->
+    <string name="settings_test">This is settings page!</string>
 
 </resources>
