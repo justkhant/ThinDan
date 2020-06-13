@@ -58,7 +58,6 @@ public class SplashScreenActivity extends AppCompatActivity {
         }, SPLASH_SCREEN_DURATION);
     }
 
-
     private boolean loggedIn() {
         AccessToken accessToken = AccessToken.getCurrentAccessToken();
         return accessToken != null;

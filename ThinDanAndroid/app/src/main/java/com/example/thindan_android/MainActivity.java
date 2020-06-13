@@ -89,8 +89,6 @@ public class MainActivity extends AppCompatActivity {
         final TextView name = (TextView) headerView.findViewById(R.id.navtitlename);
         final TextView subname = (TextView) headerView.findViewById(R.id.textView);
 
-
-
         if (logged_in_at_startup) {
             AccessToken accessToken = AccessToken.getCurrentAccessToken();
 

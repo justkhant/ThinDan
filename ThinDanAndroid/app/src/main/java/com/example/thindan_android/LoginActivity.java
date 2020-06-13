@@ -178,8 +178,6 @@ public class LoginActivity extends AppCompatActivity {
 
     }
 
-
-
     // Private method to handle Facebook login and callback
     private void onFblogin() {
         callbackManager = CallbackManager.Factory.create();
@@ -256,12 +254,8 @@ public class LoginActivity extends AppCompatActivity {
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        callbackManager.onActivityResult(requestCode, resultCode, data);
         super.onActivityResult(requestCode, resultCode, data);
-        // if you don't add following block,
-        // your registered `FacebookCallback` won't be called
-        if (callbackManager.onActivityResult(requestCode, resultCode, data)) {
-            return;
-        }
     }
 
     public void onSignUpClick(View v) {

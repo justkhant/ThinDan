@@ -20,8 +20,8 @@ import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 public class SubjectCardAdapter extends RecyclerView.Adapter<SubjectCardAdapter.MyView> {
     private List<SubjectCardModel> models;
-
-    long DURATION = 500;
+    private static int CORNER_RADIUS = 15;
+    private long DURATION = 500;
     private boolean onAttach = true;
 
     public class MyView extends RecyclerView.ViewHolder {
@@ -68,7 +68,7 @@ public class SubjectCardAdapter extends RecyclerView.Adapter<SubjectCardAdapter.
                 .load(models.get(position).getImage())
                 .fit()        // to centerCrop, you have to do either resize() or fit()
                 .centerCrop() // to remove any possible white areas
-                .transform(new RoundedCornersTransformation(15, 0,
+                .transform(new RoundedCornersTransformation(CORNER_RADIUS, 0,
                         RoundedCornersTransformation.CornerType.TOP))
                 .into(holder.picture);
         holder.subject.setText(models.get(position).getSubjectTitle());

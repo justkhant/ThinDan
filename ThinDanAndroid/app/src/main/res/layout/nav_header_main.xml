@@ -24,32 +24,32 @@
 
     <TextView
         android:id="@+id/mingalarbar"
-        android:layout_toRightOf="@id/imageView"
+        android:layout_toEndOf="@id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:paddingTop="@dimen/nav_header_vertical_spacing"
-        android:paddingLeft="8dp"
+        android:paddingHorizontal="8dp"
         android:text="@string/mingalarbar"
         android:textAppearance="@style/TextAppearance.AppCompat.Body1" />
 
     <TextView
         android:id="@+id/navtitlename"
-        android:layout_toRightOf="@id/imageView"
+        android:layout_toEndOf="@id/imageView"
         android:layout_below="@id/mingalarbar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
 
-        android:paddingLeft="8dp"
+        android:paddingHorizontal="8dp"
         android:text="@string/nav_header_title"
         android:textAppearance="@style/TextAppearance.AppCompat.Headline" />
 
     <TextView
         android:id="@+id/textView"
-        android:layout_toRightOf="@id/imageView"
+        android:layout_toEndOf="@id/imageView"
         android:layout_below="@id/navtitlename"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:paddingLeft="8dp"
+        android:paddingHorizontal="8dp"
         android:text="@string/nav_header_subtitle" />
 
 

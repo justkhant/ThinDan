@@ -78,19 +78,19 @@ public class HomeFragment extends Fragment {
 
     public void addSubjectCards() {
         subjectCardModels = new ArrayList<>();
-        subjectCardModels.add(new SubjectCardModel(R.mipmap.temp_picture,
+        subjectCardModels.add(new SubjectCardModel(R.drawable.nezuko,
                 "English",
                 "SAT Eng, AP Eng, IGCSE Eng, Vocabulary, Reading, ..."));
-        subjectCardModels.add(new SubjectCardModel(R.mipmap.temp_picture,
+        subjectCardModels.add(new SubjectCardModel(R.drawable.nezuko,
                 "Math",
                 "SAT Math I, SAT Math II, Calculus, AP Stats, IB HL, ..."));
-        subjectCardModels.add(new SubjectCardModel(R.mipmap.temp_picture,
+        subjectCardModels.add(new SubjectCardModel(R.drawable.nezuko,
                 "Physics",
                 "SAT Physics II, AP Physics, IB Physics, ..."));
-        subjectCardModels.add(new SubjectCardModel(R.mipmap.temp_picture,
+        subjectCardModels.add(new SubjectCardModel(R.drawable.nezuko,
                 "Chemistry",
                 "SAT Chemistry II, AP Chemistry, IB Chemistry, ..."));
-        subjectCardModels.add(new SubjectCardModel(R.mipmap.temp_picture,
+        subjectCardModels.add(new SubjectCardModel(R.drawable.nezuko,
                 "Mandarin",
                 "SAT Mandarin II, AP Mandarin, IB Mandarin, ..."));
     }

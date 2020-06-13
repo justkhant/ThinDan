@@ -10,4 +10,5 @@
     <dimen name="edit_text_width">250dp</dimen>
     <dimen name="edit_text_height">40dp</dimen>
     <dimen name="indicator_size">5dp</dimen>
+
 </resources>
