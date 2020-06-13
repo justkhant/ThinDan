@@ -12,4 +12,16 @@
         android:layout_height="match_parent"
         android:text="@string/categories_test" />
 
+    <!-- A RecyclerView with some commonly used attributes -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/categories_recycler"
+        android:layout_width="388dp"
+        android:layout_height="228dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="21dp"
+        android:scrollbars="vertical"
+        android:paddingHorizontal="122dp"
+        android:clipToPadding="false"
+        android:scrollbarStyle="outsideOverlay"/>
+
 </RelativeLayout>
