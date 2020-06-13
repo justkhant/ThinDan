@@ -45,13 +45,13 @@ public class HomeFragment extends Fragment {
         addSubjectCards();
         popularSubjectsRecyclerView = root.findViewById(R.id.popular_subjects_recycler);
         subjectCardAdapter = new SubjectCardAdapter(subjectCardModels);
-        RecyclerView.LayoutManager layoutManager = new CenterZoomLayoutManager(root.getContext(), LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.HORIZONTAL, false);
         popularSubjectsRecyclerView.setLayoutManager(layoutManager);
         popularSubjectsRecyclerView.setAdapter(subjectCardAdapter);
-        SnapHelper helper = new PagerSnapHelper();
-        helper.attachToRecyclerView(popularSubjectsRecyclerView);
+        //SnapHelper helper = new PagerSnapHelper();
+        //helper.attachToRecyclerView(popularSubjectsRecyclerView);
         // scroll to middle item
-        popularSubjectsRecyclerView.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
+       // popularSubjectsRecyclerView.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
 
         return root;
     }
@@ -78,19 +78,19 @@ public class HomeFragment extends Fragment {
 
     public void addSubjectCards() {
         subjectCardModels = new ArrayList<>();
-        subjectCardModels.add(new SubjectCardModel(R.drawable.nezuko,
+        subjectCardModels.add(new SubjectCardModel(R.drawable.abc,
                 "English",
                 "SAT Eng, AP Eng, IGCSE Eng, Vocabulary, Reading, ..."));
-        subjectCardModels.add(new SubjectCardModel(R.drawable.nezuko,
+        subjectCardModels.add(new SubjectCardModel(R.drawable.math,
                 "Math",
                 "SAT Math I, SAT Math II, Calculus, AP Stats, IB HL, ..."));
-        subjectCardModels.add(new SubjectCardModel(R.drawable.nezuko,
+        subjectCardModels.add(new SubjectCardModel(R.drawable.physics,
                 "Physics",
                 "SAT Physics II, AP Physics, IB Physics, ..."));
-        subjectCardModels.add(new SubjectCardModel(R.drawable.nezuko,
+        subjectCardModels.add(new SubjectCardModel(R.drawable.chemistry,
                 "Chemistry",
                 "SAT Chemistry II, AP Chemistry, IB Chemistry, ..."));
-        subjectCardModels.add(new SubjectCardModel(R.drawable.nezuko,
+        subjectCardModels.add(new SubjectCardModel(R.drawable.mandarin,
                 "Mandarin",
                 "SAT Mandarin II, AP Mandarin, IB Mandarin, ..."));
     }

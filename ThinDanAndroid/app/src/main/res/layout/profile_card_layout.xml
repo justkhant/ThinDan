@@ -9,7 +9,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="8dp"
-        app:cardCornerRadius="20dp"
+        app:cardCornerRadius="10dp"
+        android:translationZ="0dp"
+        app:cardElevation="5dp"
         app:layout_constraintTop_toTopOf="parent">
 
         <RelativeLayout

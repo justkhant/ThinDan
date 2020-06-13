@@ -8,4 +8,6 @@
 
     <color name="white">#FFFFFF</color>
     <color name="black">#000000</color>
+    <color name="section_color">#FAFAFA</color>
+    <color name="background_gray">#D7D7D7</color>
 </resources>

@@ -20,7 +20,7 @@ import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 public class SubjectCardAdapter extends RecyclerView.Adapter<SubjectCardAdapter.MyView> {
     private List<SubjectCardModel> models;
-    private static int CORNER_RADIUS = 15;
+    private static int CORNER_RADIUS = 8;
     private long DURATION = 500;
     private boolean onAttach = true;
 
@@ -73,12 +73,13 @@ public class SubjectCardAdapter extends RecyclerView.Adapter<SubjectCardAdapter.
                 .into(holder.picture);
         holder.subject.setText(models.get(position).getSubjectTitle());
         holder.subjectCategories.setText(models.get(position).getSubjectCategories());
-        setAnimation(holder.itemView, position);
+       // setAnimation(holder.itemView, position);
     }
 
     @Override
     public int getItemCount() {
-        return models.size() == 0 ? 0 : Integer.MAX_VALUE;
+        return models.size();
+        //return models.size() == 0 ? 0 : Integer.MAX_VALUE;
     }
 
     @Override
@@ -95,7 +96,7 @@ public class SubjectCardAdapter extends RecyclerView.Adapter<SubjectCardAdapter.
 
         super.onAttachedToRecyclerView(recyclerView);
     }
-
+    /*
     private void setAnimation(View itemView, int i) {
         if(!onAttach){
             i = -1;
@@ -111,5 +112,5 @@ public class SubjectCardAdapter extends RecyclerView.Adapter<SubjectCardAdapter.
         animatorSet.play(animator);
         animator.start();
     }
-
+    */
 }
