@@ -20,6 +20,7 @@ import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
 
 public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.CategoryView> {
     private List<CategoryCardModel> models;
+    private static int CORNER_RADIUS = 8;
 
     long DURATION = 500;
     private boolean onAttach = true;
@@ -70,6 +71,8 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
                 .load(models.get(position).getImage())
                 .fit()        // to centerCrop, you have to do either resize() or fit()
                 .centerCrop() // to remove any possible white areas
+                .transform(new RoundedCornersTransformation(CORNER_RADIUS, 0,
+                        RoundedCornersTransformation.CornerType.TOP))
                 .into(holder.picture);
         holder.subject.setText(models.get(position).getSubjectTitle());
         holder.subjectCategories.setText(models.get(position).getSubjectCategories());
@@ -78,8 +81,8 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
     }
 
     @Override
-    public int getItemCount() {
-        return models.size() == 0 ? 0 : Integer.MAX_VALUE;
+    public int getItemCount(){
+        return models.size();
     }
 
     @Override
