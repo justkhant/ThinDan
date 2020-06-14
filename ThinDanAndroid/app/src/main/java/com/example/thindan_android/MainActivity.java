@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_categories,
                 R.id.nav_chat,
                 R.id.nav_request,
+                R.id.nav_saved,
                 R.id.nav_settings)
                 .setDrawerLayout(drawer)
                 .build();

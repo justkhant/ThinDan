@@ -49,6 +49,11 @@
         android:name="com.example.thindan_android.ui.request.RequestFragment"
         android:label="@string/menu_request"
         tools:layout="@layout/fragment_request" />
+    <fragment
+        android:id="@+id/nav_saved"
+        android:name="com.example.thindan_android.ui.saved.SavedFragment"
+        android:label="@string/menu_saved"
+        tools:layout="@layout/fragment_saved" />
 
     <fragment
         android:id="@+id/nav_settings"
