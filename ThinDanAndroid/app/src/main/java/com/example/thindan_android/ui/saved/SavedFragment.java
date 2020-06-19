@@ -3,6 +3,8 @@ package com.example.thindan_android.ui.saved;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -10,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.thindan_android.R;
+import com.example.thindan_android.ui.categories.CategoriesAdapter;
 import com.example.thindan_android.ui.home.ProfileCardAdapter;
 import com.example.thindan_android.ui.home.ProfileCardModel;
 
@@ -28,7 +31,7 @@ public class SavedFragment extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private ViewPager viewPager;
+    private RecyclerView savedRecyclerView;
     private SavedProfileCardAdapter savedProfileCardAdapter;
     List<SavedProfileCardModel> savedProfileCardModels;
 
@@ -58,10 +61,11 @@ public class SavedFragment extends Fragment {
         View root = inflater.inflate(R.layout.fragment_saved, container, false);
 
         addProfileCards();
-        savedProfileCardAdapter = new SavedProfileCardAdapter(savedProfileCardModels, root.getContext());
-        viewPager = root.findViewById(R.id.savedViewPager);
-        viewPager.setAdapter(savedProfileCardAdapter);
-        viewPager.setPadding(60, 0, 60, 0);
+        savedRecyclerView = root.findViewById(R.id.saved_recycler);
+        savedProfileCardAdapter = new SavedProfileCardAdapter(savedProfileCardModels);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
+        savedRecyclerView.setLayoutManager(layoutManager);
+        savedRecyclerView.setAdapter(savedProfileCardAdapter);
 
         return root;
     }

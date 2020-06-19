@@ -42,16 +42,15 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <androidx.viewpager.widget.ViewPager
-                    android:id="@+id/savedViewPager"
-                    android:layout_width="match_parent"
-                    android:layout_height="220dp"
-                    android:layout_below="@id/saved_title"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="8dp"
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/saved_recycler"
+                    android:layout_width="fill_parent"
+                    android:layout_height="fill_parent"
+                    android:layout_alignParentTop="true"
+                    android:layout_centerHorizontal="true"
                     android:clipToPadding="false"
-                    android:foregroundGravity="center"
-                    android:overScrollMode="never" />
+                    android:scrollbarStyle="outsideOverlay"
+                    android:scrollbars="vertical" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 

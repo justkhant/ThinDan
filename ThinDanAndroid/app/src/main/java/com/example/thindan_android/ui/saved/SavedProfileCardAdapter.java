@@ -1,85 +1,118 @@
 package com.example.thindan_android.ui.saved;
 
-import android.content.Context;
-import android.view.LayoutInflater;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
+        import android.animation.AnimatorSet;
+        import android.animation.ObjectAnimator;
+        import android.view.LayoutInflater;
+        import android.view.View;
+        import android.view.ViewGroup;
+        import android.widget.ImageView;
+        import android.widget.TextView;
 
-import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.viewpager.widget.PagerAdapter;
+        import androidx.annotation.NonNull;
+        import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.thindan_android.R;
-import com.example.thindan_android.ui.home.SubjectTagAdapter;
+        import com.example.thindan_android.R;
+        import com.squareup.picasso.Picasso;
 
-import java.util.List;
+        import java.util.List;
 
-public class SavedProfileCardAdapter extends PagerAdapter {
+        import jp.wasabeef.picasso.transformations.RoundedCornersTransformation;
+
+public class SavedProfileCardAdapter extends RecyclerView.Adapter<com.example.thindan_android.ui.saved.SavedProfileCardAdapter.SavedView> {
     private List<SavedProfileCardModel> models;
-    private LayoutInflater layoutInflater;
-    private Context context;
+    private static int CORNER_RADIUS = 8;
 
-    public SavedProfileCardAdapter(List<SavedProfileCardModel> models, Context context) {
+    long DURATION = 500;
+    private boolean onAttach = true;
+
+    public class SavedView extends RecyclerView.ViewHolder {
+        ImageView picture;
+        TextView subject;
+        TextView name;
+
+
+        // parameterised constructor for View Holder class
+        // which takes the view as a parameter
+        public SavedView(@NonNull View itemView) {
+            super(itemView);
+            picture = itemView.findViewById(R.id.saved_profile_card_profilePic);
+            subject = itemView.findViewById(R.id.saved_profile_card_subject);
+            name = itemView.findViewById(R.id.saved_profile_card_name);
+
+        }
+    }
+
+    //custom adapter class takes in a list of tags
+    public SavedProfileCardAdapter(List<SavedProfileCardModel> models) {
         this.models = models;
-        this.context = context;
+    }
+
+    // Override onCreateViewHolder which deals
+    // with the inflation of the card layout
+    // as an item for the RecyclerView.
+    @NonNull
+    @Override
+    public com.example.thindan_android.ui.saved.SavedProfileCardAdapter.SavedView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        //inflate subject_tag_layout.xml
+        View itemView = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.saved_profile_card_layout, parent,false);
+
+        return new com.example.thindan_android.ui.saved.SavedProfileCardAdapter.SavedView(itemView);
+    }
+
+    // Override onBindViewHolder which deals
+    // with the setting of different data
+    // and methods related to clicks on
+    // particular items of the RecyclerView.
+    @Override
+    public void onBindViewHolder(@NonNull com.example.thindan_android.ui.saved.SavedProfileCardAdapter.SavedView holder, int position) {
+        position = position % models.size();
+        Picasso.get()
+                .load(models.get(position).getImage())
+                .fit()        // to centerCrop, you have to do either resize() or fit()
+                .centerCrop() // to remove any possible white areas
+                .transform(new RoundedCornersTransformation(CORNER_RADIUS, 0,
+                        RoundedCornersTransformation.CornerType.TOP))
+                .into(holder.picture);
+        holder.subject.setText(models.get(position).getSubject());
+        holder.name.setText(models.get(position).getName());
+        //setAnimation(holder.itemView, position);
+
     }
 
     @Override
-    public int getCount() {
+    public int getItemCount(){
         return models.size();
     }
 
     @Override
-    public boolean isViewFromObject(@NonNull View view, @NonNull Object object) {
-        return view.equals(object);
+    public void onAttachedToRecyclerView(@NonNull RecyclerView recyclerView) {
+
+        recyclerView.addOnScrollListener(new RecyclerView.OnScrollListener() {
+            @Override
+            public void onScrollStateChanged(@NonNull RecyclerView recyclerView, int newState) {
+                onAttach = false;
+                super.onScrollStateChanged(recyclerView, newState);
+            }
+
+        });
+
+        super.onAttachedToRecyclerView(recyclerView);
     }
 
-    @NonNull
-    @Override
-    public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        layoutInflater = LayoutInflater.from(context);
-        View view = layoutInflater.inflate(R.layout.saved_profile_card_layout, container, false);
-        ImageView profilePic = view.findViewById(R.id.saved_profile_card_profilePic);
-        TextView subject = view.findViewById(R.id.saved_profile_card_subject);
-        TextView name = view.findViewById(R.id.saved_profile_card_name);
-        TextView description = view.findViewById(R.id.saved_profile_card_description);
-
-        RecyclerView tags = view.findViewById(R.id.saved_profile_card_tags);
-        RecyclerView.LayoutManager recyclerViewLayoutManager = new LinearLayoutManager(context);
-
-        // Set LayoutManager on Recycler View
-        tags.setLayoutManager(recyclerViewLayoutManager);
-
-        // calling constructor of adapter
-        // with tag list as a parameter
-        SubjectTagAdapter adapter = new SubjectTagAdapter(models.get(position).getTags());
-
-        // Set Horizontal Layout Manager
-        // for Recycler view
-        LinearLayoutManager horizontalLayout = new LinearLayoutManager(
-                context, LinearLayoutManager.HORIZONTAL, false);
-
-        tags.setLayoutManager(horizontalLayout);
-
-        // Set adapter on recycler view
-        tags.setAdapter(adapter);
-
-        profilePic.setImageResource(models.get(position).getImage());
-        subject.setText(models.get(position).getSubject());
-        name.setText(models.get(position).getName());
-        description.setText(models.get(position).getDescription());
-
-        container.addView(view, 0);
-
-        return view;
-    }
-
-    @Override
-    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((View) object);
-    }
-
+//    private void setAnimation(View itemView, int i) {
+//        if(!onAttach){
+//            i = -1;
+//        }
+//        boolean isNotFirstItem = i == -1;
+//        i++;
+//        itemView.setAlpha(0.f);
+//        AnimatorSet animatorSet = new AnimatorSet();
+//        ObjectAnimator animator = ObjectAnimator.ofFloat(itemView, "alpha", 0.f, 0.5f, 1.0f);
+//        ObjectAnimator.ofFloat(itemView, "alpha", 0.f).start();
+//        animator.setStartDelay(isNotFirstItem ? DURATION / 2 : (i * DURATION / 3));
+//        animator.setDuration(500);
+//        animatorSet.play(animator);
+//        animator.start();
+//    }
 }
