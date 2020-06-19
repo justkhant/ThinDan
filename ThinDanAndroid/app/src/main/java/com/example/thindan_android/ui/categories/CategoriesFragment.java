@@ -100,6 +100,30 @@ public class CategoriesFragment extends Fragment {
                 "Mandarin",
                 "SAT Mandarin II, AP Mandarin, IB Mandarin, ...",
                 "12345 Thindans"));
+        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
+                "Burmese",
+                "SAT Physics II, AP Physics, IB Physics, ...",
+                "12345 Thindans"));
+        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
+                "History",
+                "SAT Chemistry II, AP Chemistry, IB Chemistry, ...",
+                "12345 Thindans"));
+        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
+                "Japanese",
+                "SAT Mandarin II, AP Mandarin, IB Mandarin, ...",
+                "12345 Thindans"));
+        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
+                "Computer Science",
+                "SAT Physics II, AP Physics, IB Physics, ...",
+                "12345 Thindans"));
+        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
+                "Piano",
+                "SAT Chemistry II, AP Chemistry, IB Chemistry, ...",
+                "12345 Thindans"));
+        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
+                "Korean",
+                "SAT Mandarin II, AP Mandarin, IB Mandarin, ...",
+                "12345 Thindans"));
     }
 
 
