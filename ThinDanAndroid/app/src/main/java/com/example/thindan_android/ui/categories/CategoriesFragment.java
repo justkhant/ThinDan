@@ -78,23 +78,23 @@ public class CategoriesFragment extends Fragment {
 
     public void addCategoryCards() {
         categoryCardModels = new ArrayList<>();
-        categoryCardModels.add(new CategoryCardModel(R.mipmap.temp_picture,
+        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
                 "English",
                 "SAT Eng, AP Eng, IGCSE Eng, Vocabulary, Reading, ...",
                 "12345 Thindans"));
-        categoryCardModels.add(new CategoryCardModel(R.mipmap.temp_picture,
+        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
                 "Math",
                 "SAT Math I, SAT Math II, Calculus, AP Stats, IB HL, ...",
                 "12345 Thindans"));
-        categoryCardModels.add(new CategoryCardModel(R.mipmap.temp_picture,
+        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
                 "Physics",
                 "SAT Physics II, AP Physics, IB Physics, ...",
                 "12345 Thindans"));
-        categoryCardModels.add(new CategoryCardModel(R.mipmap.temp_picture,
+        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
                 "Chemistry",
                 "SAT Chemistry II, AP Chemistry, IB Chemistry, ...",
                 "12345 Thindans"));
-        categoryCardModels.add(new CategoryCardModel(R.mipmap.temp_picture,
+        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
                 "Mandarin",
                 "SAT Mandarin II, AP Mandarin, IB Mandarin, ...",
                 "12345 Thindans"));
