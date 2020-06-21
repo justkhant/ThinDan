@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.example.thindan_android.ui.home.HomeFragment"
+        android:name="com.example.thindanAndroid.components.main.home.HomeFragment"
         android:label="@string/menu_home"
         tools:layout="@layout/fragment_home">
 
@@ -31,39 +31,39 @@
 
     <fragment
         android:id="@+id/nav_search"
-        android:name="com.example.thindan_android.ui.search.SearchFragment"
+        android:name="com.example.thindanAndroid.components.main.search.SearchFragment"
         android:label="@string/menu_search"
         tools:layout="@layout/fragment_search" />
     <fragment
         android:id="@+id/nav_categories"
-        android:name="com.example.thindan_android.ui.categories.CategoriesFragment"
+        android:name="com.example.thindanAndroid.components.main.categories.CategoriesFragment"
         android:label="@string/menu_categories"
         tools:layout="@layout/fragment_categories" />
     <fragment
         android:id="@+id/nav_chat"
-        android:name="com.example.thindan_android.ui.chat.ChatFragment"
+        android:name="com.example.thindanAndroid.components.main.chat.ChatFragment"
         android:label="@string/menu_chat"
         tools:layout="@layout/fragment_chat" />
     <fragment
         android:id="@+id/nav_request"
-        android:name="com.example.thindan_android.ui.request.RequestFragment"
+        android:name="com.example.thindanAndroid.components.main.request.RequestFragment"
         android:label="@string/menu_request"
         tools:layout="@layout/fragment_request" />
     <fragment
         android:id="@+id/nav_saved"
-        android:name="com.example.thindan_android.ui.saved.SavedFragment"
+        android:name="com.example.thindanAndroid.components.main.saved.SavedFragment"
         android:label="@string/menu_saved"
         tools:layout="@layout/fragment_saved" />
 
     <fragment
         android:id="@+id/nav_settings"
-        android:name="com.example.thindan_android.ui.settings.SettingsFragment"
+        android:name="com.example.thindanAndroid.components.main.settings.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.example.thindan_android.ui.profile.ProfileFragment"
+        android:name="com.example.thindanAndroid.activities.profile.ProfileFragment"
         android:label="Profile"
         tools:layout="@layout/activity_profile" />
 

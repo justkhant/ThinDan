@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#CCCCCC"
     android:backgroundTint="#FFFFFF"
-    tools:context=".ui.home.HomeFragment">
+    tools:context=".components.main.home.HomeFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"

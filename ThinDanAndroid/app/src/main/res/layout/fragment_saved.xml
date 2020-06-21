@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="#CCCCCC"
     android:backgroundTint="#FFFFFF"
-    tools:context=".ui.saved.SavedFragment">
+    tools:context=".components.main.saved.SavedFragment">
 
     <RelativeLayout
         android:layout_width="match_parent"
