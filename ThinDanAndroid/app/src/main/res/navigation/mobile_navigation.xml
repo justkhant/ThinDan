@@ -49,10 +49,22 @@
         android:name="com.example.thindan_android.ui.request.RequestFragment"
         android:label="@string/menu_request"
         tools:layout="@layout/fragment_request" />
+    <fragment
+        android:id="@+id/nav_saved"
+        android:name="com.example.thindan_android.ui.saved.SavedFragment"
+        android:label="@string/menu_saved"
+        tools:layout="@layout/fragment_saved" />
 
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.example.thindan_android.ui.settings.SettingsFragment"
         android:label="@string/menu_settings"
         tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.thindan_android.ui.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/activity_profile" />
+
 </navigation>

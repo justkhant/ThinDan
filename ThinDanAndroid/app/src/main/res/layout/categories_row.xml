@@ -2,15 +2,17 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="wrap_content"
+    android:layout_width="fill_parent"
     android:layout_height="wrap_content"
-    android:paddingHorizontal="8dp"
-    android:paddingBottom="20dp">
+    android:paddingHorizontal="5dp"
+    android:paddingVertical="5dp">
 
     <androidx.cardview.widget.CardView
-        android:layout_width="match_parent"
-        android:layout_height="208dp"
-        app:cardCornerRadius="15dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:translationZ="0dp"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
 
@@ -28,16 +30,18 @@
 
             <TextView
                 android:id="@+id/category_title"
-                android:layout_width="250dp"
+                android:layout_width="200dp"
                 android:layout_height="30dp"
                 android:layout_alignParentBottom="false"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@id/subject_picture"
-
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="5dp"
                 android:textColor="@color/black"
                 android:text="Category Title"
                 android:textSize="16sp"
                 android:textAllCaps="true"/>
+
             <TextView
                 android:id="@+id/thindan_count"
                 android:layout_width="wrap_content"
@@ -46,17 +50,21 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentTop="true"
                 android:layout_toRightOf="@id/category_title"
-
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="5dp"
                 android:textColor="@color/black"
                 android:text="12345 ThinDans"
-                android:textSize="10sp"/>
+                android:textSize="10sp"
+                android:textAlignment="viewEnd"/>
+
             <TextView
                 android:id="@+id/sub_categories"
                 android:layout_width="fill_parent"
                 android:layout_height="30dp"
                 android:layout_below="@id/category_title"
                 android:layout_toRightOf="@id/subject_picture"
-
+                android:paddingHorizontal="5dp"
+                android:paddingVertical="5dp"
                 android:textColor="@color/black"
                 android:text="Sub Categories"
                 android:textSize="12sp"/>

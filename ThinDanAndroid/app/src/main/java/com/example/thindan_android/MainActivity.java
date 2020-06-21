@@ -1,29 +1,27 @@
 package com.example.thindan_android;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.view.Menu;
 
 import android.widget.ImageView;
 import android.widget.TextView;
 
-import com.example.thindan_android.ui.home.HomeFragment;
-import com.example.thindan_android.ui.settings.SettingsFragment;
+import com.example.thindan_android.ui.profile.ProfileActivity;
 import com.facebook.AccessToken;
 
 import com.facebook.GraphRequest;
 import com.facebook.GraphResponse;
+import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.navigation.NavigationView;
 import com.squareup.picasso.Picasso;
 
 
-import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -38,10 +36,12 @@ import org.json.JSONObject;
 public class MainActivity extends AppCompatActivity {
 
     private AppBarConfiguration mAppBarConfiguration;
+    private static
     boolean fbUser;
     String userID;
     String userAvatar;
     String fullname;
+    private static final int PROFILE_ACTIVITY_ID = 0;
 
     @SuppressLint("ResourceAsColor")
     @Override
@@ -84,6 +84,13 @@ public class MainActivity extends AppCompatActivity {
 
         // Setting up Nav Drawer Header Programmatically
         View headerView = navigationView.inflateHeaderView(R.layout.nav_header_main);
+        headerView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent i = new Intent(getApplicationContext(), ProfileActivity.class);
+                startActivityForResult(i, PROFILE_ACTIVITY_ID);
+            }
+        });
 
         ImageView avatar = (ImageView) headerView.findViewById(R.id.imageView);
         final TextView name = (TextView) headerView.findViewById(R.id.navtitlename);
@@ -130,6 +137,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.nav_categories,
                 R.id.nav_chat,
                 R.id.nav_request,
+                R.id.nav_saved,
                 R.id.nav_settings)
                 .setDrawerLayout(drawer)
                 .build();
@@ -153,5 +161,6 @@ public class MainActivity extends AppCompatActivity {
         return NavigationUI.navigateUp(navController, mAppBarConfiguration)
                 || super.onSupportNavigateUp();
     }
+
 
 }

@@ -259,7 +259,6 @@ public class LoginActivity extends AppCompatActivity {
     }
 
     public void onSignUpClick(View v) {
-
         Intent i = new Intent(this, SignupActivity.class);
         startActivityForResult(i, SIGN_UP_ACTIVITY_ID);
     }

@@ -17,6 +17,8 @@ import com.example.thindan_android.R;
 import com.example.thindan_android.ui.categories.CenterZoomLayoutManager;
 import com.example.thindan_android.ui.categories.CategoriesAdapter;
 import com.example.thindan_android.ui.categories.CategoryCardModel;
+import com.facebook.AccessToken;
+import com.facebook.GraphRequest;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -65,13 +67,13 @@ public class CategoriesFragment extends Fragment {
         addCategoryCards();
         categoriesRecyclerView = root.findViewById(R.id.categories_recycler);
         categoryCardAdapter = new CategoriesAdapter(categoryCardModels);
-        RecyclerView.LayoutManager layoutManager = new CenterZoomLayoutManager(root.getContext(), LinearLayoutManager.HORIZONTAL, false);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
         categoriesRecyclerView.setLayoutManager(layoutManager);
         categoriesRecyclerView.setAdapter(categoryCardAdapter);
-        SnapHelper helper = new PagerSnapHelper();
-        helper.attachToRecyclerView(categoriesRecyclerView);
+        //SnapHelper helper = new PagerSnapHelper();
+        //helper.attachToRecyclerView(categoriesRecyclerView);
         // scroll to middle item
-        categoriesRecyclerView.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
+        //categoriesRecyclerView.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
 
         return root;
     }
@@ -98,6 +100,31 @@ public class CategoriesFragment extends Fragment {
                 "Mandarin",
                 "SAT Mandarin II, AP Mandarin, IB Mandarin, ...",
                 "12345 Thindans"));
+        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
+                "Burmese",
+                "SAT Physics II, AP Physics, IB Physics, ...",
+                "12345 Thindans"));
+        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
+                "History",
+                "SAT Chemistry II, AP Chemistry, IB Chemistry, ...",
+                "12345 Thindans"));
+        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
+                "Japanese",
+                "SAT Mandarin II, AP Mandarin, IB Mandarin, ...",
+                "12345 Thindans"));
+        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
+                "Computer Science",
+                "SAT Physics II, AP Physics, IB Physics, ...",
+                "12345 Thindans"));
+        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
+                "Piano",
+                "SAT Chemistry II, AP Chemistry, IB Chemistry, ...",
+                "12345 Thindans"));
+        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
+                "Korean",
+                "SAT Mandarin II, AP Mandarin, IB Mandarin, ...",
+                "12345 Thindans"));
     }
+
 
 }
