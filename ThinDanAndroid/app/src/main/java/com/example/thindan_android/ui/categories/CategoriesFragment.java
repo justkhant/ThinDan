@@ -3,6 +3,7 @@ package com.example.thindan_android.ui.categories;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
@@ -17,8 +18,7 @@ import com.example.thindan_android.R;
 import com.example.thindan_android.ui.categories.CenterZoomLayoutManager;
 import com.example.thindan_android.ui.categories.CategoriesAdapter;
 import com.example.thindan_android.ui.categories.CategoryCardModel;
-import com.facebook.AccessToken;
-import com.facebook.GraphRequest;
+
 
 import java.util.ArrayList;
 import java.util.List;
@@ -68,7 +68,8 @@ public class CategoriesFragment extends Fragment {
         categoriesRecyclerView = root.findViewById(R.id.categories_recycler);
         categoryCardAdapter = new CategoriesAdapter(categoryCardModels);
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
-        categoriesRecyclerView.setLayoutManager(layoutManager);
+        GridLayoutManager gridLayoutManager = new GridLayoutManager(root.getContext(), 2, GridLayoutManager.VERTICAL, false);
+        categoriesRecyclerView.setLayoutManager(gridLayoutManager);
         categoriesRecyclerView.setAdapter(categoryCardAdapter);
         //SnapHelper helper = new PagerSnapHelper();
         //helper.attachToRecyclerView(categoriesRecyclerView);
@@ -80,23 +81,23 @@ public class CategoriesFragment extends Fragment {
 
     public void addCategoryCards() {
         categoryCardModels = new ArrayList<>();
-        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
+        categoryCardModels.add(new CategoryCardModel(R.drawable.abc,
                 "English",
                 "SAT Eng, AP Eng, IGCSE Eng, Vocabulary, Reading, ...",
                 "12345 Thindans"));
-        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
+        categoryCardModels.add(new CategoryCardModel(R.drawable.math,
                 "Math",
                 "SAT Math I, SAT Math II, Calculus, AP Stats, IB HL, ...",
                 "12345 Thindans"));
-        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
+        categoryCardModels.add(new CategoryCardModel(R.drawable.physics,
                 "Physics",
                 "SAT Physics II, AP Physics, IB Physics, ...",
                 "12345 Thindans"));
-        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
+        categoryCardModels.add(new CategoryCardModel(R.drawable.chemistry,
                 "Chemistry",
                 "SAT Chemistry II, AP Chemistry, IB Chemistry, ...",
                 "12345 Thindans"));
-        categoryCardModels.add(new CategoryCardModel(R.drawable.nezuko,
+        categoryCardModels.add(new CategoryCardModel(R.drawable.mandarin,
                 "Mandarin",
                 "SAT Mandarin II, AP Mandarin, IB Mandarin, ...",
                 "12345 Thindans"));
