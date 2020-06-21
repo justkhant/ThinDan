@@ -53,7 +53,7 @@ public class MainActivity extends AppCompatActivity {
         Log.e("Logged In at Startup?", String.valueOf(logged_in_at_startup));
 
 
-        if(!logged_in_at_startup) {
+        if (!logged_in_at_startup) {
             fbUser = getIntent().getBooleanExtra("fbUser", false);
             userID = getIntent().getStringExtra("userID");
             userAvatar = getIntent().getStringExtra("userAvatar");
@@ -62,12 +62,6 @@ public class MainActivity extends AppCompatActivity {
             fbUser = true;
             userAvatar = "https://graph.facebook.com/" + userID + "/picture?return_ssl_resources=1";
         }
-
-        //Log.e("fbUser?", String.valueOf(fbUser));
-        //Log.e("userID", userID);
-//        Log.e("userAvatarURL", userAvatar);
-
-        //Log.e("fullname", fullname);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
@@ -127,7 +121,6 @@ public class MainActivity extends AppCompatActivity {
         name.setText(fullname);
         subname.setText(userID);
 
-        //AccessToken accessToken = AccessToken.getCurrentAccessToken();
 
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.

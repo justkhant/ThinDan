@@ -73,13 +73,12 @@ public class SubjectCardAdapter extends RecyclerView.Adapter<SubjectCardAdapter.
                 .into(holder.picture);
         holder.subject.setText(models.get(position).getSubjectTitle());
         holder.subjectCategories.setText(models.get(position).getSubjectCategories());
-       // setAnimation(holder.itemView, position);
+
     }
 
     @Override
     public int getItemCount() {
         return models.size();
-        //return models.size() == 0 ? 0 : Integer.MAX_VALUE;
     }
 
     @Override
@@ -96,21 +95,5 @@ public class SubjectCardAdapter extends RecyclerView.Adapter<SubjectCardAdapter.
 
         super.onAttachedToRecyclerView(recyclerView);
     }
-    /*
-    private void setAnimation(View itemView, int i) {
-        if(!onAttach){
-            i = -1;
-        }
-        boolean isNotFirstItem = i == -1;
-        i++;
-        itemView.setAlpha(0.f);
-        AnimatorSet animatorSet = new AnimatorSet();
-        ObjectAnimator animator = ObjectAnimator.ofFloat(itemView, "alpha", 0.f, 0.5f, 1.0f);
-        ObjectAnimator.ofFloat(itemView, "alpha", 0.f).start();
-        animator.setStartDelay(isNotFirstItem ? DURATION / 2 : (i * DURATION / 3));
-        animator.setDuration(500);
-        animatorSet.play(animator);
-        animator.start();
-    }
-    */
+
 }

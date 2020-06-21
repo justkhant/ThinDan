@@ -53,7 +53,6 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
     @NonNull
     @Override
     public CategoryView onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        //inflate subject_tag_layout.xml
         View itemView = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.categories_row, parent,false);
 
@@ -76,7 +75,7 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
                 .into(holder.picture);
         holder.subject.setText(models.get(position).getSubjectTitle());
         holder.subjectCategories.setText(models.get(position).getSubjectCategories());
-        //setAnimation(holder.itemView, position);
+
 
     }
 
@@ -99,20 +98,4 @@ public class CategoriesAdapter extends RecyclerView.Adapter<CategoriesAdapter.Ca
 
         super.onAttachedToRecyclerView(recyclerView);
     }
-
-//    private void setAnimation(View itemView, int i) {
-//        if(!onAttach){
-//            i = -1;
-//        }
-//        boolean isNotFirstItem = i == -1;
-//        i++;
-//        itemView.setAlpha(0.f);
-//        AnimatorSet animatorSet = new AnimatorSet();
-//        ObjectAnimator animator = ObjectAnimator.ofFloat(itemView, "alpha", 0.f, 0.5f, 1.0f);
-//        ObjectAnimator.ofFloat(itemView, "alpha", 0.f).start();
-//        animator.setStartDelay(isNotFirstItem ? DURATION / 2 : (i * DURATION / 3));
-//        animator.setDuration(500);
-//        animatorSet.play(animator);
-//        animator.start();
-//    }
 }

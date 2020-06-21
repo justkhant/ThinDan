@@ -52,5 +52,4 @@
         android:paddingHorizontal="8dp"
         android:text="@string/nav_header_subtitle" />
 
-
 </RelativeLayout>

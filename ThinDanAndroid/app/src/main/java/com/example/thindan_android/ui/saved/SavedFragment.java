@@ -13,8 +13,6 @@ import android.view.ViewGroup;
 
 import com.example.thindan_android.R;
 import com.example.thindan_android.ui.categories.CategoriesAdapter;
-import com.example.thindan_android.ui.home.ProfileCardAdapter;
-import com.example.thindan_android.ui.home.ProfileCardModel;
 
 import java.util.ArrayList;
 import java.util.Arrays;

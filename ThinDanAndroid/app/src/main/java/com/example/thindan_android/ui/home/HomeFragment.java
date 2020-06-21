@@ -48,10 +48,7 @@ public class HomeFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.HORIZONTAL, false);
         popularSubjectsRecyclerView.setLayoutManager(layoutManager);
         popularSubjectsRecyclerView.setAdapter(subjectCardAdapter);
-        //SnapHelper helper = new PagerSnapHelper();
-        //helper.attachToRecyclerView(popularSubjectsRecyclerView);
-        // scroll to middle item
-       // popularSubjectsRecyclerView.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
+
 
         return root;
     }

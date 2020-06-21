@@ -83,10 +83,6 @@
                                 android:textColor="#000000" />
                         </RelativeLayout>
                     </androidx.cardview.widget.CardView>
-
-
-
-
                 </RelativeLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -112,11 +108,5 @@
             android:layout_below="@+id/tab_layout"
             android:layout_marginTop="0dp"
        />
-
-
-
-
-
-
     </RelativeLayout>
 </ScrollView>

@@ -11,9 +11,7 @@ import android.view.ViewGroup;
 import com.example.thindan_android.R;
 
 /**
- * A simple {@link Fragment} subclass.
- * Use the {@link SearchFragment#newInstance} factory method to
- * create an instance of this fragment.
+ * A simple {@link Fragment} subclass. Use the {@link SearchFragment#newInstance} factory method to create an instance of this fragment.
  */
 public class SearchFragment extends Fragment {
     // TODO: Rename parameter arguments, choose names that match
@@ -30,8 +28,7 @@ public class SearchFragment extends Fragment {
     }
 
     /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
+     * Use this factory method to create a new instance of this fragment using the provided parameters.
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
@@ -58,7 +55,7 @@ public class SearchFragment extends Fragment {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+            Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View root = inflater.inflate(R.layout.fragment_search, container, false);
         return root;

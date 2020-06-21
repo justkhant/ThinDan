@@ -7,7 +7,6 @@
     android:orientation="vertical"
     tools:context=".ui.categories.CategoriesFragment">
 
-
     <androidx.cardview.widget.CardView
         android:id="@+id/popular_subjects_frame"
         android:layout_width="match_parent"
@@ -30,8 +29,5 @@
                 android:scrollbarStyle="outsideOverlay"
                 android:scrollbars="vertical" />
         </RelativeLayout>
-
     </androidx.cardview.widget.CardView>
-
-
 </RelativeLayout>

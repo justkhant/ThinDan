@@ -4,30 +4,19 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.PagerSnapHelper;
 import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.SnapHelper;
-import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.thindan_android.R;
-import com.example.thindan_android.ui.categories.CenterZoomLayoutManager;
-import com.example.thindan_android.ui.categories.CategoriesAdapter;
-import com.example.thindan_android.ui.categories.CategoryCardModel;
 
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class CategoriesFragment extends Fragment {
-
-//    private RecyclerView recyclerView;
-//    private RecyclerView.Adapter mAdapter;
-//    private RecyclerView.LayoutManager layoutManager;
 
     private RecyclerView categoriesRecyclerView;
     private CategoriesAdapter categoryCardAdapter;
@@ -40,22 +29,6 @@ public class CategoriesFragment extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //setContentView(R.layout.fragment_categories);
-//        setContentView(R.layout.fragment_categories);
-//        recyclerView = (RecyclerView) findViewById(R.id.categories_recycler_view);
-//
-//        // use this setting to improve performance if you know that changes
-//        // in content do not change the layout size of the RecyclerView
-//        recyclerView.setHasFixedSize(true);
-//
-//        // use a linear layout manager
-//        layoutManager = new LinearLayoutManager(this);
-//        recyclerView.setLayoutManager(layoutManager);
-//
-//        // specify an adapter (see also next example)
-//        mAdapter = new CategoriesAdapter(myDataset);
-//        recyclerView.setAdapter(mAdapter);
-
     }
 
     @Override
@@ -67,14 +40,9 @@ public class CategoriesFragment extends Fragment {
         addCategoryCards();
         categoriesRecyclerView = root.findViewById(R.id.categories_recycler);
         categoryCardAdapter = new CategoriesAdapter(categoryCardModels);
-        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(root.getContext(), LinearLayoutManager.VERTICAL, false);
         GridLayoutManager gridLayoutManager = new GridLayoutManager(root.getContext(), 2, GridLayoutManager.VERTICAL, false);
         categoriesRecyclerView.setLayoutManager(gridLayoutManager);
         categoriesRecyclerView.setAdapter(categoryCardAdapter);
-        //SnapHelper helper = new PagerSnapHelper();
-        //helper.attachToRecyclerView(categoriesRecyclerView);
-        // scroll to middle item
-        //categoriesRecyclerView.getLayoutManager().scrollToPosition(Integer.MAX_VALUE / 2);
 
         return root;
     }

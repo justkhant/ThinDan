@@ -53,10 +53,5 @@
                     android:scrollbars="vertical" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
-
-
-
-
     </RelativeLayout>
-
 </ScrollView>
