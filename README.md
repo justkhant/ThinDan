@@ -39,6 +39,8 @@ In consideration of the popularity of android phones in Yangon's general populac
 ## UI Examples
 While this project is still under development, here are some snapshots of the current UI :). 
 
+<kbd><img src='UI_Snapshots/login.png' width ="290px"/></kbd> &nbsp;&nbsp; <kbd><img src='UI_Snapshots/home_page.png' width ="290px"/></kbd> &nbsp;&nbsp; <kbd><img src='UI_Snapshots/profile_page.png' width ="290px"/></kbd>
+
 ## Team
 **@khantk** Lead Android Developer (Frontend/Backend)
 **@tripletk** Android Developer
