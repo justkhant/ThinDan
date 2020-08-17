@@ -12,9 +12,18 @@ From our own personal and other anecdotal experiences, we realized that there we
   * It is hard to compare price rates, number of students, availabilities, and other metrics that are important to consider between tutors. 
 
 ## Solution
-In lieu of these inefficiencies, Thindan aims to provide an easily accessible social platform where tutors and students can connect at a click of a button. On Thindan, private tutors and tutoring centers can advertise and market their services for students, and students can have a wide range of options to consider and compare. 
+In lieu of these inefficiencies, Thindan aims to provide an easily accessible social platform where tutors and students can connect at a click of a button. With an emphasis on convenience through communication, Thindan provides a medium where private tutors and tutoring centers can advertise and market their services for students, and students/parents can have a wide range of options to consider and compare. 
 
-## Project Goals
+In consideration of the popularity of android phones in Yangon's general populace, and in consideration of the fact that the technologically developing society may require some time adopting the use of web applications, we decided that creating an Android Application would be the best approach for this project. 
+
+## Goals
+* Help grow existing tutoring services in the market, and encourage and aid new tutors entering the market.
+* Replace the often unreliable word-of-mouth system, with a fast and reliable social platform. 
+* Provide students/parents with insightful recommendations and reviews to help make the search for tutors easier. 
+* Optimize and promote communications between private tutors and prospective students through instant messaging. 
+* And more!
+
+## Milestones
 - [x] Iteration 1
   - Basic UI
   - Assembling a team of devs and designers
@@ -27,6 +36,8 @@ In lieu of these inefficiencies, Thindan aims to provide an easily accessible so
 - [ ] Iteration 3
   - More Info Coming Soon...
 
+## UI Examples
+While this project is still under development, here are some snapshots of the current UI :). 
 
 ## Team
 **@khantk** Lead Android Developer (Frontend/Backend)
