@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/mobile_navigation"
+    app:startDestination="@+id/nav_home">
+
+    <fragment
+        android:id="@+id/nav_home"
+        android:name="com.example.thindanAndroid.components.main.home.HomeFragment"
+        android:label="@string/menu_home"
+        tools:layout="@layout/fragment_home">
+
+<!--        <action-->
+<!--            android:id="@+id/action_HomeFragment_to_HomeSecondFragment"-->
+<!--            app:destination="@id/nav_home_second" />-->
+    </fragment>
+<!--    <fragment-->
+<!--        android:id="@+id/nav_home_second"-->
+<!--        android:name="com.example.thindan_android.ui.home.HomeSecondFragment"-->
+<!--        android:label="@string/home_second"-->
+<!--        tools:layout="@layout/fragment_home_second">-->
+<!--        <action-->
+<!--            android:id="@+id/action_HomeSecondFragment_to_HomeFragment"-->
+<!--            app:destination="@id/nav_home" />-->
+
+<!--        <argument-->
+<!--            android:name="myArg"-->
+<!--            app:argType="string" />-->
+<!--    </fragment>-->
+
+    <fragment
+        android:id="@+id/nav_search"
+        android:name="com.example.thindanAndroid.components.main.search.SearchFragment"
+        android:label="@string/menu_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/nav_categories"
+        android:name="com.example.thindanAndroid.components.main.categories.CategoriesFragment"
+        android:label="@string/menu_categories"
+        tools:layout="@layout/fragment_categories" />
+    <fragment
+        android:id="@+id/nav_chat"
+        android:name="com.example.thindanAndroid.components.main.chat.ChatFragment"
+        android:label="@string/menu_chat"
+        tools:layout="@layout/fragment_chat" />
+    <fragment
+        android:id="@+id/nav_request"
+        android:name="com.example.thindanAndroid.components.main.request.RequestFragment"
+        android:label="@string/menu_request"
+        tools:layout="@layout/fragment_request" />
+    <fragment
+        android:id="@+id/nav_saved"
+        android:name="com.example.thindanAndroid.components.main.saved.SavedFragment"
+        android:label="@string/menu_saved"
+        tools:layout="@layout/fragment_saved" />
+
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.example.thindanAndroid.components.main.settings.SettingsFragment"
+        android:label="@string/menu_settings"
+        tools:layout="@layout/fragment_settings" />
+
+    <fragment
+        android:id="@+id/nav_profile"
+        android:name="com.example.thindanAndroid.activities.profile.ProfileFragment"
+        android:label="Profile"
+        tools:layout="@layout/activity_profile" />
+
+</navigation>

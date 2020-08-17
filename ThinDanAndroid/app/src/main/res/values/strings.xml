@@ -1,0 +1,92 @@
+<resources>
+    <string name="app_name">thindan</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- menu items -->
+    <string name="menu_home">Home</string>
+    <string name="menu_search">Search</string>
+    <string name="menu_categories">Categories</string>
+    <string name="menu_chat">Chat</string>
+    <string name="menu_request">Request</string>
+    <string name="menu_saved">Saved</string>
+    <string name="menu_settings">Settings</string>
+
+    <string name="menu_gallery">Gallery</string>
+    //
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="mingalarbar">Mingalarbar</string>
+
+    <string name="home_second">Home Second</string>
+
+    <string name="facebook_app_id">305990943733781</string>
+    <string name="fb_login_protocol_scheme">fb305990943733781</string>
+
+    <!-- splash_screen  -->
+    <string name="splashscreen_app_name">thindan</string>
+    <string name="splashscreen_description">bridging the gap between students and tutors</string>
+
+    <!-- login/signup_screen  -->
+    <string name="login_welcome">welcome to,</string>
+    <string name="login_app_name">thindan.</string>
+    <string name="login">login</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+    <string name="or">OR</string>
+    <string name="forgot_password">forgot password?</string>
+    <string name="no_account">don\'t have an account? </string>
+    <string name="signup">sign up</string>
+    <string name="confirm_password">Confirm Password</string>
+    <string name="back_arrow_description">Back arrow image.</string>
+    <!-- verification method screen -->
+    <string name="email">Email</string>
+    <string name="phone">Phone Number</string>
+    <string name="verification_method_title">select a verification method</string>
+    <string name="continue_s">continue</string>
+    <!-- verification -->
+    <string name="verification_title">enter 4-digit code</string>
+    <string name="enter">enter</string>
+    <string name="zero">0</string>
+
+    <!-- home page -->
+    <string name="profile_pic">Profile Pic.</string>
+    <string name="featured">Featured</string>
+    <string name="temp_subject">English</string>
+    <string name="temp_tutor_name">Sayar Kyaw Swar</string>
+    <string name="temp_description">Greyhound disively hello coldly wonderfully marginally far..</string>
+    <string name="temp_subject_tag">SAT English</string>
+    <string name="popular_subjects">Popular Subjects</string>
+    <string name="subject_picture_description">Subject Picture</string>
+    <string name="temp_subject_categories">SAT Eng, AP Eng, IGCSE Eng, Vocabulary, Reading, ...</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- profile page -->
+    <string name="cover_photo">Cover Photo</string>
+
+    <!-- search -->
+    <string name="search_test">This is search page!</string>
+
+    <!-- categories -->
+    <string name="categories_test">This is categories page!</string>
+
+    <!-- chat -->
+    <string name="chat_test">This is chat page!</string>
+
+    <!-- request -->
+    <string name="request_test">This is request page!</string>
+
+    <!-- saved -->
+    <string name="saved_test">This is request page!</string>
+    <string name="saved_title">Saved ThinDans</string>
+
+    <!-- settings -->
+    <string name="settings_test">This is settings page!</string>
+
+
+</resources>

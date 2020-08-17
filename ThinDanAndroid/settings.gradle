@@ -1,0 +1,2 @@
+rootProject.name='ThinDan-Android'
+include ':app'
